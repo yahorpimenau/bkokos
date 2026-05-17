@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { Logo } from "./Logo";
 
 const navLinks = [
   { href: "/solutions", label: "Solutions" },
-  { href: "/developers", label: "Automation Lab" },
-  { href: "/developers#oasis", label: "The Oasis" },
+  { href: "/developers", label: "For Developers" },
   { href: "/pricing", label: "Pricing" },
 ];
 
@@ -18,18 +18,12 @@ export function Header() {
   return (
     <header className="w-full top-0 sticky z-40 bg-background/80 backdrop-blur-md border-b-[1.5pt] border-primary/10">
       <nav className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
-        <Link
-          href="/"
-          className="font-[var(--font-headline)] text-2xl font-bold text-primary hover:scale-105 transition-transform duration-200"
-        >
-          Big Kokos
-        </Link>
+        <Logo />
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
-            const isActive =
-              pathname === link.href || pathname === link.href.split("#")[0];
+            const isActive = pathname === link.href;
             return (
               <Link
                 key={link.label}
@@ -50,9 +44,9 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/pricing"
-            className="hidden sm:block bg-tertiary text-on-tertiary px-6 py-2.5 rounded-full font-bold hover:scale-105 transition-all duration-200 squishy-interaction btn-glow"
+            className="hidden sm:block bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold hover:scale-105 transition-all duration-200 squishy-interaction btn-glow"
           >
-            Peek Inside
+            Get Started
           </Link>
 
           {/* Hamburger */}
@@ -61,15 +55,9 @@ export function Header() {
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
-            <span
-              className={`w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
-            />
-            <span
-              className={`w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
-            />
+            <span className={`w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
+            <span className={`w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
           </button>
         </div>
       </nav>
@@ -91,9 +79,9 @@ export function Header() {
             <Link
               href="/pricing"
               onClick={() => setMobileOpen(false)}
-              className="bg-tertiary text-on-tertiary px-6 py-3 rounded-full font-bold text-center mt-2 hover:scale-105 transition-transform"
+              className="bg-primary text-on-primary px-6 py-3 rounded-full font-bold text-center mt-2 hover:scale-105 transition-transform"
             >
-              Peek Inside
+              Get Started
             </Link>
           </div>
         </div>
