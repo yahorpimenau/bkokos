@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden min-h-[70vh] md:min-h-[85vh] flex items-center">
+      <section className="relative overflow-hidden min-h-[75vh] md:min-h-[90vh] flex items-center">
         {/* Full-bleed background video */}
         <video
           autoPlay
@@ -15,46 +15,55 @@ export default function HomePage() {
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover scale-105"
           poster="/kokos-hero.png"
         >
           <source src="/hero-bg.webm" type="video/webm" />
           <source src="/hero-bg.mp4" type="video/mp4" />
         </video>
-        {/* Light overlay — enough for readability, video still clearly visible */}
-        <div className="absolute inset-0 bg-primary/40"></div>
 
-        <div className="relative z-10 px-6 py-20 md:py-32 max-w-7xl mx-auto w-full text-center">
-          <AnimateOnScroll animation="fade-in-up">
-            <span className="font-[var(--font-mono)] text-xs uppercase tracking-widest text-white/70 font-bold mb-4 block">
-              Full-Service Development Partner
-            </span>
-          </AnimateOnScroll>
-          <AnimateOnScroll animation="fade-in-up" delay={100}>
-            <h1 className="font-[var(--font-headline)] text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight max-w-4xl mx-auto">
-              Build, launch, and
-              <br />
-              scale — with one team.
-            </h1>
-          </AnimateOnScroll>
-          <AnimateOnScroll animation="fade-in-up" delay={200}>
-            <p className="text-base sm:text-lg text-white/80 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
-              Websites, apps, CRM integrations, and automation — all from one team.
-              Turnkey development for startups and growing businesses.
-            </p>
-          </AnimateOnScroll>
-          <AnimateOnScroll animation="fade-in-up" delay={300}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact" className="bg-burnt-orange text-white px-8 sm:px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-200 shadow-lg btn-glow text-center squishy-interaction">
-                Get a Free Quote
-              </Link>
-              <Link href="/process" className="border-2 border-white/60 text-white px-8 sm:px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-colors duration-200 text-center">
-                See How We Work
-              </Link>
-            </div>
-            <p className="text-white/50 text-sm mt-6 font-[var(--font-mono)]">From MVP to enterprise — we deliver.</p>
-          </AnimateOnScroll>
+        {/* Layered overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/30 to-primary/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-transparent to-primary/20"></div>
+
+        {/* Content */}
+        <div className="relative z-10 px-6 py-24 md:py-36 max-w-7xl mx-auto w-full">
+          <div className="max-w-3xl">
+            <AnimateOnScroll animation="fade-in-up">
+              <span className="inline-block font-[var(--font-mono)] text-xs uppercase tracking-widest text-white/60 font-bold mb-6 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-sm bg-white/5">
+                Full-Service Development Partner
+              </span>
+            </AnimateOnScroll>
+            <AnimateOnScroll animation="fade-in-up" delay={100}>
+              <h1 className="font-[var(--font-headline)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-[1.1] tracking-tight">
+                Build, launch,
+                <br />
+                and <span className="text-burnt-orange">scale</span> —
+                <br className="hidden sm:block" />
+                with one team.
+              </h1>
+            </AnimateOnScroll>
+            <AnimateOnScroll animation="fade-in-up" delay={200}>
+              <p className="text-base sm:text-lg md:text-xl text-white/70 mb-10 md:mb-12 max-w-xl leading-relaxed">
+                Websites, apps, CRM integrations, and automation.
+                Turnkey development for startups and growing businesses.
+              </p>
+            </AnimateOnScroll>
+            <AnimateOnScroll animation="fade-in-up" delay={300}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/contact" className="bg-burnt-orange text-white px-8 sm:px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-200 shadow-[0_8px_32px_rgba(211,84,0,0.4)] text-center squishy-interaction">
+                  Get a Free Quote
+                </Link>
+                <Link href="/process" className="border-2 border-white/30 text-white px-8 sm:px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-200 text-center backdrop-blur-sm">
+                  See How We Work
+                </Link>
+              </div>
+            </AnimateOnScroll>
+          </div>
         </div>
+
+        {/* Bottom fade into next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent"></div>
       </section>
 
       {/* Value Proposition */}
