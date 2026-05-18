@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { IntegrationsMarquee } from "@/components/IntegrationsMarquee";
 
 const services = [
   {
@@ -73,6 +74,22 @@ export default function ServicesPage() {
             </div>
           </AnimateOnScroll>
         ))}
+      </section>
+
+      {/* Integrations */}
+      <section className="mb-20 md:mb-32">
+        <AnimateOnScroll className="text-center mb-10 md:mb-14">
+          <span className="font-[var(--font-mono)] text-xs uppercase tracking-widest text-secondary font-bold mb-3 block">
+            We connect with everything
+          </span>
+          <h2 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold text-primary mb-4">
+            30+ integrations out of the box
+          </h2>
+          <p className="text-on-surface-variant max-w-xl mx-auto">
+            CRMs, cloud platforms, dev tools, automation engines — if it has an API, we plug into it.
+          </p>
+        </AnimateOnScroll>
+        <IntegrationsMarquee />
       </section>
 
       {/* Callout */}

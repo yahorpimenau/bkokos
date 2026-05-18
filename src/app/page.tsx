@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { IconShield, IconDroplet, IconTree, IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconWrench, IconCoconut, IconHammer, IconCup } from "@/components/Icons";
+import { IntegrationsMarquee } from "@/components/IntegrationsMarquee";
 
 export default function HomePage() {
   return (
@@ -107,6 +108,17 @@ export default function HomePage() {
             </Link>
           </AnimateOnScroll>
         </div>
+      </section>
+
+      {/* Integrations Marquee */}
+      <section className="py-16 md:py-20 bg-surface-container px-6">
+        <AnimateOnScroll className="text-center mb-8 md:mb-12">
+          <h2 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold text-primary mb-3">
+            We integrate with your stack
+          </h2>
+          <p className="text-on-surface-variant">CRMs, clouds, dev tools, automation — all connected.</p>
+        </AnimateOnScroll>
+        <IntegrationsMarquee />
       </section>
 
       {/* How It Works */}
