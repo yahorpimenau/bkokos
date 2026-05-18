@@ -142,31 +142,84 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-16 md:py-24 px-6 max-w-7xl mx-auto">
-        <AnimateOnScroll className="text-center mb-12 md:mb-20">
-          <h2 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold text-primary mb-4">How it works</h2>
-          <p className="text-on-surface-variant">Three steps from idea to launch.</p>
+      <section className="py-16 md:py-28 px-6 max-w-7xl mx-auto">
+        <AnimateOnScroll className="text-center mb-14 md:mb-20">
+          <span className="inline-block font-[var(--font-mono)] text-xs uppercase tracking-widest text-burnt-orange font-bold mb-4">Our Process</span>
+          <h2 className="font-[var(--font-headline)] text-2xl md:text-4xl font-bold text-primary">Idea to launch in three steps</h2>
         </AnimateOnScroll>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          {[
-            { Icon: IconChat, num: "01", title: "Discovery", desc: "Tell us your needs. Free consultation to map the scope, timeline, and budget." },
-            { Icon: IconHammer, num: "02", title: "Design & Build", desc: "We design, develop, and integrate — transparent sprints, weekly updates." },
-            { Icon: IconRocket, num: "03", title: "Launch & Grow", desc: "Go live, train your team, and keep scaling. We stay for ongoing support." },
-          ].map((step, i) => (
-            <AnimateOnScroll key={step.num} delay={i * 150} className="text-center">
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-white tough-border mx-auto rounded-full flex items-center justify-center mb-4 md:mb-6 soft-shadow relative group hover:scale-110 transition-transform duration-300">
-                <step.Icon className="w-9 h-9 md:w-11 md:h-11 text-primary" />
-                <div className="absolute -top-2 -right-2 bg-burnt-orange text-white w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold text-xs md:text-sm">
-                  {step.num}
+
+        <div className="relative">
+          {/* Connector line — desktop only */}
+          <div className="hidden md:block absolute top-[4.5rem] left-[calc(16.67%+1rem)] right-[calc(16.67%+1rem)] h-[2px]">
+            <div className="w-full h-full bg-gradient-to-r from-burnt-orange via-secondary to-primary rounded-full"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {[
+              {
+                Icon: IconChat,
+                num: "01",
+                title: "Discovery",
+                desc: "Free consultation to understand your goals, map the scope, and define a clear plan.",
+                detail: "1–2 days",
+                color: "burnt-orange",
+              },
+              {
+                Icon: IconHammer,
+                num: "02",
+                title: "Design & Build",
+                desc: "Agile sprints with weekly demos. You see progress, give feedback, stay in control.",
+                detail: "2–12 weeks",
+                color: "secondary",
+              },
+              {
+                Icon: IconRocket,
+                num: "03",
+                title: "Launch & Grow",
+                desc: "Go live with confidence. 30-day hyper-care, ongoing support, and room to scale.",
+                detail: "Ongoing",
+                color: "primary",
+              },
+            ].map((step, i) => (
+              <AnimateOnScroll key={step.num} delay={i * 200}>
+                <div className="relative bg-white tough-border rounded-2xl p-6 md:p-8 soft-shadow hover:shadow-xl transition-all duration-300 group h-full">
+                  {/* Number badge */}
+                  <div className={`w-14 h-14 md:w-[4.5rem] md:h-[4.5rem] rounded-2xl flex items-center justify-center mb-6 relative z-10 ${
+                    step.color === "burnt-orange" ? "bg-burnt-orange/10" :
+                    step.color === "secondary" ? "bg-secondary/10" : "bg-primary/10"
+                  } group-hover:scale-110 transition-transform duration-300`}>
+                    <step.Icon className={`w-7 h-7 md:w-8 md:h-8 ${
+                      step.color === "burnt-orange" ? "text-burnt-orange" :
+                      step.color === "secondary" ? "text-secondary" : "text-primary"
+                    }`} />
+                    <div className={`absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-white font-bold text-[10px] ${
+                      step.color === "burnt-orange" ? "bg-burnt-orange" :
+                      step.color === "secondary" ? "bg-secondary" : "bg-primary"
+                    }`}>
+                      {step.num}
+                    </div>
+                  </div>
+
+                  <h4 className="font-[var(--font-headline)] font-bold text-primary mb-2 text-lg md:text-xl">{step.title}</h4>
+                  <p className="text-on-surface-variant text-sm md:text-base leading-relaxed mb-4">{step.desc}</p>
+
+                  <span className={`inline-block font-[var(--font-mono)] text-[11px] uppercase tracking-wider font-bold px-3 py-1 rounded-full ${
+                    step.color === "burnt-orange" ? "bg-burnt-orange/10 text-burnt-orange" :
+                    step.color === "secondary" ? "bg-secondary/10 text-secondary" : "bg-primary/10 text-primary"
+                  }`}>
+                    {step.detail}
+                  </span>
                 </div>
-              </div>
-              <h4 className="font-[var(--font-headline)] font-bold text-primary mb-2 text-lg">{step.title}</h4>
-              <p className="text-sm text-on-surface-variant px-4">{step.desc}</p>
-            </AnimateOnScroll>
-          ))}
+              </AnimateOnScroll>
+            ))}
+          </div>
         </div>
-        <AnimateOnScroll className="text-center mt-10">
-          <Link href="/process" className="text-burnt-orange font-bold hover:underline">See our full process &rarr;</Link>
+
+        <AnimateOnScroll className="text-center mt-12">
+          <Link href="/process" className="inline-flex items-center gap-2 border-2 border-primary text-primary px-8 py-3 rounded-full font-bold hover:bg-primary hover:text-white transition-colors group">
+            See our full process
+            <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
+          </Link>
         </AnimateOnScroll>
       </section>
 
