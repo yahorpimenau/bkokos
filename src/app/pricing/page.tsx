@@ -1,5 +1,12 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Pricing",
+  description:
+    "Transparent pricing from $2,500. Fixed quotes after a free discovery call — no surprises.",
+};
 
 const plans = [
   {

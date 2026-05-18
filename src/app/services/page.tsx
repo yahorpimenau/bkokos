@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { IntegrationsMarquee } from "@/components/IntegrationsMarquee";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "Full-service development: websites, mobile apps, CRM integrations, automation, dashboards, and DevOps — all from one team.",
+};
 
 const services = [
   {

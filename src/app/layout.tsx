@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
+import { StickyCTA } from "@/components/StickyCTA";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-headline",
@@ -77,6 +78,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
+        <StickyCTA />
         <CookieConsent />
       </body>
     </html>

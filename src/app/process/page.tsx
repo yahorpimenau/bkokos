@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { IconSprout, IconScroll, IconHammer, IconRocket, IconWrench, IconHandshake, IconCoins } from "@/components/Icons";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "How We Work",
+  description:
+    "Our process from discovery to delivery: transparent, structured, and built around your needs.",
+};
 
 const stages = [
   { Icon: IconSprout, title: "Discovery", desc: "Free discovery call. We listen, ask questions, and map your needs." },

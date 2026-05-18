@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { IconCoconut, IconLink, IconPalette, IconChat, IconBuild, IconHandshake } from "@/components/Icons";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Meet the Big Kokos team — builders who love hard problems and smooth solutions.",
+};
 
 const team = [
   { name: "Coco", role: "Lead Developer", desc: "10 years full-stack. Turns complex problems into clean code.", Icon: IconCoconut, color: "text-primary" },

@@ -26,6 +26,7 @@ export default function ContactPage() {
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
   function toggleService(value: string) {
     setSelectedServices((prev) =>
@@ -39,7 +40,7 @@ export default function ContactPage() {
     const form = e.currentTarget;
     const data = new FormData(form);
     try {
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -51,11 +52,13 @@ export default function ContactPage() {
           message: data.get("message"),
         }),
       });
+      if (!res.ok) throw new Error("Request failed");
+      setSending(false);
+      setSubmitted(true);
     } catch {
-      // Still show success to user — lead logged server-side
+      setSending(false);
+      setError(true);
     }
-    setSending(false);
-    setSubmitted(true);
   }
 
   if (submitted) {
@@ -161,7 +164,7 @@ export default function ContactPage() {
                       key={opt.value}
                       type="button"
                       onClick={() => toggleService(opt.value)}
-                      className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium border-[1.5pt] transition-all duration-200 squishy-interaction ${
+                      className={`inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium border-[1.5pt] transition-all duration-200 squishy-interaction ${
                         active
                           ? "bg-burnt-orange text-white border-burnt-orange shadow-md scale-[1.02]"
                           : "bg-surface-container-lowest text-on-surface-variant border-primary/15 hover:border-burnt-orange/40 hover:bg-surface-container"
@@ -222,12 +225,26 @@ export default function ContactPage() {
               </label>
             </div>
 
+            {/* Error message */}
+            {error && (
+              <div className="mb-6 p-4 bg-error-container border border-error/20 rounded-xl text-on-error-container text-sm text-center">
+                Something went wrong. Please email us at{" "}
+                <a href="mailto:hello@bigkokos.dev" className="underline font-bold">hello@bigkokos.dev</a>
+              </div>
+            )}
+
             {/* Submit */}
             <button
               type="submit"
               disabled={sending}
               className="w-full bg-burnt-orange text-white py-4 rounded-full font-bold text-lg hover:scale-[1.02] transition-all btn-glow squishy-interaction flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:scale-100"
             >
+              {sending && (
+                <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>
+              )}
               {sending ? "Sending..." : "Send Message"}
               {!sending && <span className="text-xl">&rarr;</span>}
             </button>
@@ -255,7 +272,7 @@ export default function ContactPage() {
               </div>
             </a>
             <a
-              href="#"
+              href="mailto:hello@bigkokos.dev?subject=Discovery%20Call%20Request"
               className="flex items-center gap-4 p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors group"
             >
               <div className="w-11 h-11 bg-secondary/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
