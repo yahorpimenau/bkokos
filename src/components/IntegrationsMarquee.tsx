@@ -2,7 +2,9 @@
 
 const BASE = "https://raw.githubusercontent.com/yahorpimenau/thesvg/main/public/icons";
 
-const rows = [
+type BrandItem = { slug: string; name: string; variant?: string };
+
+const rows: BrandItem[][] = [
   [
     { slug: "salesforce", name: "Salesforce" },
     { slug: "hubspot", name: "HubSpot" },
@@ -23,11 +25,11 @@ const rows = [
   [
     { slug: "aws", name: "AWS" },
     { slug: "google-cloud", name: "Google Cloud" },
-    { slug: "azure-devops", name: "Azure" },
-    { slug: "vercel", name: "Vercel" },
+    { slug: "microsoft-azure", name: "Azure" },
+    { slug: "vercel", name: "Vercel", variant: "light" },
     { slug: "docker", name: "Docker" },
     { slug: "kubernetes", name: "Kubernetes" },
-    { slug: "github", name: "GitHub" },
+    { slug: "github", name: "GitHub", variant: "light" },
     { slug: "gitlab", name: "GitLab" },
     { slug: "figma", name: "Figma" },
     { slug: "react", name: "React" },
@@ -35,11 +37,11 @@ const rows = [
     { slug: "wordpress", name: "WordPress" },
     { slug: "netlify", name: "Netlify" },
     { slug: "supabase", name: "Supabase" },
-    { slug: "postgresql", name: "PostgreSQL" },
+    { slug: "mongodb", name: "MongoDB" },
   ],
 ];
 
-function MarqueeRow({ items, reverse = false }: { items: typeof rows[0]; reverse?: boolean }) {
+function MarqueeRow({ items, reverse = false }: { items: BrandItem[]; reverse?: boolean }) {
   const doubled = [...items, ...items];
 
   return (
@@ -53,7 +55,7 @@ function MarqueeRow({ items, reverse = false }: { items: typeof rows[0]; reverse
             className="flex items-center gap-3 bg-white border-[1.5pt] border-primary/10 rounded-2xl px-5 py-3 md:px-6 md:py-4 hover:border-burnt-orange/30 hover:shadow-lg hover:scale-105 transition-all duration-300 shrink-0 group"
           >
             <img
-              src={`${BASE}/${item.slug}/default.svg`}
+              src={`${BASE}/${item.slug}/${item.variant || "default"}.svg`}
               alt={item.name}
               className="w-7 h-7 md:w-8 md:h-8 object-contain"
               loading="lazy"
