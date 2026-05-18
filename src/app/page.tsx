@@ -4,10 +4,13 @@ import { IconShield, IconDroplet, IconBuild, IconGlobe, IconPhone, IconLink, Ico
 import { IntegrationsMarquee } from "@/components/IntegrationsMarquee";
 import { HomeContactForm } from "@/components/HomeContactForm";
 import { HeroVideo } from "@/components/HeroVideo";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { OrganizationJsonLd } from "@/components/JsonLd";
 
 export default function HomePage() {
   return (
     <>
+      <OrganizationJsonLd />
       {/* Hero */}
       <section className="relative overflow-hidden min-h-[75vh] md:min-h-[90vh] flex items-center">
         {/* Background video with branded preloader */}
@@ -260,7 +263,7 @@ export default function HomePage() {
                 { value: "<4h", label: "Avg. response time" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <div className="font-[var(--font-headline)] text-2xl md:text-3xl font-extrabold text-white mb-1">{stat.value}</div>
+                  <AnimatedCounter value={stat.value} className="font-[var(--font-headline)] text-2xl md:text-3xl font-extrabold text-white mb-1 block" />
                   <div className="text-white/40 text-xs md:text-sm">{stat.label}</div>
                 </div>
               ))}

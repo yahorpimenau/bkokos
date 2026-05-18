@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconBuild, IconMail, IconCall, IconShield } from "@/components/Icons";
@@ -23,8 +24,8 @@ const budgetOptions = [
 ];
 
 export default function ContactPage() {
+  const router = useRouter();
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
 
@@ -54,37 +55,11 @@ export default function ContactPage() {
       });
       if (!res.ok) throw new Error("Request failed");
       setSending(false);
-      setSubmitted(true);
+      router.push("/thank-you");
     } catch {
       setSending(false);
       setError(true);
     }
-  }
-
-  if (submitted) {
-    return (
-      <div className="max-w-2xl mx-auto px-6 py-24 md:py-40 text-center">
-        <AnimateOnScroll animation="scale-in">
-          <div className="bg-white tough-border p-10 md:p-16 rounded-3xl soft-shadow">
-            <div className="w-20 h-20 bg-secondary-container rounded-full flex items-center justify-center mx-auto mb-6">
-              <IconShield className="w-10 h-10 text-secondary" />
-            </div>
-            <h1 className="font-[var(--font-headline)] text-3xl md:text-4xl font-extrabold text-primary mb-4">
-              Message received!
-            </h1>
-            <p className="text-on-surface-variant text-lg mb-8">
-              We&apos;ll get back to you within 24 hours with a clear next step.
-            </p>
-            <Link
-              href="/"
-              className="inline-block border-2 border-primary text-primary px-8 py-3 rounded-full font-bold hover:bg-primary hover:text-white transition-colors"
-            >
-              Back to Home
-            </Link>
-          </div>
-        </AnimateOnScroll>
-      </div>
-    );
   }
 
   return (

@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export function HomeContactForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const router = useRouter();
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
   const [gdprChecked, setGdprChecked] = useState(false);
@@ -27,25 +28,11 @@ export function HomeContactForm() {
       });
       if (!res.ok) throw new Error("Request failed");
       setSending(false);
-      setSubmitted(true);
+      router.push("/thank-you");
     } catch {
       setSending(false);
       setError(true);
     }
-  }
-
-  if (submitted) {
-    return (
-      <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl md:rounded-3xl p-8 md:p-10 text-center">
-        <div className="w-14 h-14 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-7 h-7 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        </div>
-        <h4 className="font-[var(--font-headline)] text-xl font-bold text-white mb-2">Message sent!</h4>
-        <p className="text-white/70 text-sm">We&apos;ll be in touch within 24 hours.</p>
-      </div>
-    );
   }
 
   return (

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { IconSprout, IconScroll, IconHammer, IconRocket, IconWrench, IconHandshake, IconCoins } from "@/components/Icons";
 import type { Metadata } from "next";
+import { FAQJsonLd } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "How We Work",
@@ -33,6 +34,8 @@ const faqs = [
 
 export default function ProcessPage() {
   return (
+    <>
+    <FAQJsonLd items={faqs} />
     <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
       {/* Hero */}
       <section className="mb-16 md:mb-24 text-center">
@@ -133,5 +136,6 @@ export default function ProcessPage() {
         </div>
       </AnimateOnScroll>
     </div>
+    </>
   );
 }

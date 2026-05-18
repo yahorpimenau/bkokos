@@ -241,3 +241,20 @@ html {
 .btn-glow-green:hover {
   box-shadow: 0 0 20px rgba(70, 103, 41, 0.3), 0 12px 24px -8px rgba(70, 103, 41, 0.15);
 }
+
+/* Accessibility: respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-float,
+  .animate-pulse,
+  .animate-ping,
+  .animate-spin {
+    animation: none !important;
+  }
+}
