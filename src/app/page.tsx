@@ -3,25 +3,15 @@ import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { IconShield, IconDroplet, IconBuild, IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconWrench, IconChat, IconHammer, IconChart, IconStar, IconQuote } from "@/components/Icons";
 import { IntegrationsMarquee } from "@/components/IntegrationsMarquee";
 import { HomeContactForm } from "@/components/HomeContactForm";
+import { HeroVideo } from "@/components/HeroVideo";
 
 export default function HomePage() {
   return (
     <>
       {/* Hero */}
       <section className="relative overflow-hidden min-h-[75vh] md:min-h-[90vh] flex items-center">
-        {/* Full-bleed background video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover scale-105"
-          poster="/kokos-hero.png"
-        >
-          <source src="/hero-bg.webm" type="video/webm" />
-          <source src="/hero-bg.mp4" type="video/mp4" />
-        </video>
+        {/* Background video with branded preloader */}
+        <HeroVideo />
 
         {/* Layered overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/30 to-primary/70"></div>
