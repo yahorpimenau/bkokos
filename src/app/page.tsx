@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
-import { IconShield, IconDroplet, IconBuild, IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconWrench, IconChat, IconHammer } from "@/components/Icons";
+import { IconShield, IconDroplet, IconBuild, IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconWrench, IconChat, IconHammer, IconChart, IconStar, IconQuote } from "@/components/Icons";
 import { IntegrationsMarquee } from "@/components/IntegrationsMarquee";
 import { HomeContactForm } from "@/components/HomeContactForm";
 
@@ -102,13 +102,15 @@ export default function HomePage() {
             <h2 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold text-primary mb-4">What we build</h2>
             <p className="text-on-surface-variant">If it involves code, integration, or automation — we handle it.</p>
           </AnimateOnScroll>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { Icon: IconGlobe, title: "Websites & Web Apps", desc: "From corporate landing pages to full-stack SaaS platforms. Responsive, fast, custom-built." },
               { Icon: IconPhone, title: "Mobile Apps", desc: "iOS + Android (React Native / Flutter / native). Smooth UX that users love to open every day." },
               { Icon: IconLink, title: "CRM & Integrations", desc: "Connect HubSpot, Salesforce, Pipedrive, or any custom CRM. Automate leads, sync data, save hours." },
               { Icon: IconGear, title: "Custom Automation", desc: "Workflows, scripts, AI agents — we automate the repetitive so you focus on growth." },
+              { Icon: IconChart, title: "Dashboards & Analytics", desc: "Custom BI dashboards with Metabase, Power BI, or bespoke. Turn raw data into decisions." },
               { Icon: IconRocket, title: "MVP in a Week", desc: "Got an idea? We'll build a minimum viable product fast. Test, iterate, scale." },
+              { Icon: IconBuild, title: "Internal Tools", desc: "Admin panels, inventory systems, booking engines — tools your team actually wants to use." },
               { Icon: IconWrench, title: "Maintenance & Support", desc: "24/7 support plans. We're here when you need us." },
             ].map((s, i) => (
               <AnimateOnScroll key={s.title} delay={i * 100}>
@@ -224,27 +226,56 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 md:py-24 bg-surface-container px-6">
-        <div className="max-w-5xl mx-auto">
-          <AnimateOnScroll className="text-center mb-12">
-            <h2 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold text-primary">What our clients say</h2>
+      <section className="py-16 md:py-28 bg-primary overflow-hidden px-6">
+        <div className="max-w-7xl mx-auto">
+          <AnimateOnScroll className="text-center mb-14 md:mb-20">
+            <span className="inline-block font-[var(--font-mono)] text-xs uppercase tracking-widest text-white/50 font-bold mb-4">Client Stories</span>
+            <h2 className="font-[var(--font-headline)] text-2xl md:text-4xl font-bold text-white">Trusted by teams that ship</h2>
           </AnimateOnScroll>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {[
-              { quote: "Big Kokos turned our scattered tools into one smooth workflow. Website, CRM, mobile app — all delivered in 3 months.", name: "Alex M.", title: "Founder, GreenLeaf" },
-              { quote: "They delivered our MVP two weeks early and it just worked. No drama, no scope creep — just solid engineering.", name: "Sofia R.", title: "CTO, Lume" },
+              { quote: "Big Kokos turned our scattered tools into one smooth workflow. Website, CRM, mobile app — all delivered in 3 months.", name: "Alex M.", title: "Founder, GreenLeaf", metric: "3 months", metricLabel: "full platform delivery" },
+              { quote: "They delivered our MVP two weeks early and it just worked. No drama, no scope creep — just solid engineering.", name: "Sofia R.", title: "CTO, Lume", metric: "2 weeks", metricLabel: "ahead of schedule" },
+              { quote: "Our dashboards went from 6 separate spreadsheets to one real-time Metabase setup. Decisions that took days now take minutes.", name: "James K.", title: "Head of Ops, Forra", metric: "80%", metricLabel: "faster reporting" },
             ].map((t, i) => (
-              <AnimateOnScroll key={t.name} delay={i * 150} animation={i === 0 ? "fade-in-left" : "fade-in-right"}>
-                <div className="bg-white tough-border p-6 md:p-8 rounded-2xl soft-shadow h-full">
-                  <p className="text-on-surface-variant italic mb-6 leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
-                  <div>
-                    <p className="font-bold text-primary">{t.name}</p>
-                    <p className="text-on-surface-variant text-sm">{t.title}</p>
+              <AnimateOnScroll key={t.name} delay={i * 150}>
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 md:p-8 rounded-2xl h-full flex flex-col hover:bg-white/10 transition-colors duration-300 group">
+                  <IconQuote className="w-8 h-8 text-burnt-orange/60 mb-4 group-hover:text-burnt-orange transition-colors" />
+                  <p className="text-white/80 mb-6 leading-relaxed flex-grow text-sm md:text-base">
+                    {t.quote}
+                  </p>
+                  <div className="border-t border-white/10 pt-5 flex items-center justify-between gap-4">
+                    <div>
+                      <p className="font-bold text-white text-sm">{t.name}</p>
+                      <p className="text-white/50 text-xs">{t.title}</p>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <p className="font-[var(--font-headline)] text-xl md:text-2xl font-extrabold text-burnt-orange">{t.metric}</p>
+                      <p className="text-white/40 text-[10px] md:text-xs uppercase font-[var(--font-mono)]">{t.metricLabel}</p>
+                    </div>
                   </div>
                 </div>
               </AnimateOnScroll>
             ))}
           </div>
+
+          {/* Stats bar */}
+          <AnimateOnScroll>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8">
+              {[
+                { value: "50+", label: "Projects delivered" },
+                { value: "98%", label: "On-time delivery" },
+                { value: "4.9/5", label: "Client satisfaction" },
+                { value: "<4h", label: "Avg. response time" },
+              ].map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <div className="font-[var(--font-headline)] text-2xl md:text-3xl font-extrabold text-white mb-1">{stat.value}</div>
+                  <div className="text-white/40 text-xs md:text-sm">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </AnimateOnScroll>
         </div>
       </section>
 

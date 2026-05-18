@@ -20,6 +20,10 @@ const services = [
     items: ["Admin dashboards, inventory systems, booking engines", "Workflow automation (Zapier / Make alternatives built in-house)", "API development and third-party integrations"],
   },
   {
+    title: "Dashboards & Business Intelligence",
+    items: ["Custom dashboards with Metabase, Power BI, Looker, or Grafana", "KPI tracking, real-time reporting, automated alerts", "Data pipeline setup: ETL, warehouse, visualization layer", "Turn spreadsheet chaos into one-click decisions"],
+  },
+  {
     title: "Turnkey MVP & Startup Package",
     items: ["Idea → wireframes → prototype → MVP in 2–4 weeks", "Includes basic CRM integration and analytics", "Scalable architecture — move to production without rewrite"],
   },
@@ -75,6 +79,57 @@ export default function ServicesPage() {
           </AnimateOnScroll>
         ))}
       </section>
+
+      {/* Analytics Hook */}
+      <AnimateOnScroll animation="scale-in" className="mb-20 md:mb-32">
+        <div className="bg-primary text-white rounded-2xl md:rounded-3xl p-8 md:p-14 flex flex-col md:flex-row gap-8 md:gap-14 items-center overflow-hidden relative">
+          <div className="absolute -top-20 -right-20 w-64 h-64 bg-burnt-orange/20 rounded-full blur-3xl"></div>
+          <div className="flex-1 relative z-10">
+            <span className="font-[var(--font-mono)] text-xs uppercase tracking-widest text-burnt-orange font-bold mb-3 block">
+              New: BI & Analytics
+            </span>
+            <h3 className="font-[var(--font-headline)] text-2xl md:text-3xl font-extrabold mb-4">
+              Your business makes data.
+              <br />
+              We make it useful.
+            </h3>
+            <p className="text-white/70 mb-6 leading-relaxed max-w-lg">
+              Most companies sit on goldmines of data locked in spreadsheets, CRMs, and disconnected tools.
+              We build custom dashboards that turn that chaos into real-time, actionable insights — so you stop guessing and start deciding.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {["Metabase", "Power BI", "Looker", "Grafana", "Custom"].map((tool) => (
+                <span key={tool} className="px-3 py-1.5 bg-white/10 border border-white/15 rounded-full text-xs font-bold text-white/80">
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="w-full md:w-72 shrink-0 relative z-10">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-white/50 text-xs font-[var(--font-mono)] uppercase">Revenue</span>
+                <span className="text-secondary text-xs font-bold">+23%</span>
+              </div>
+              <div className="flex items-end gap-1.5 h-24">
+                {[35, 42, 38, 55, 48, 62, 58, 75, 70, 85, 80, 95].map((h, i) => (
+                  <div key={i} className="flex-1 rounded-sm bg-gradient-to-t from-burnt-orange/80 to-burnt-orange/30" style={{ height: `${h}%` }} />
+                ))}
+              </div>
+              <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/10">
+                <div>
+                  <p className="font-[var(--font-headline)] text-lg font-extrabold text-white">$142K</p>
+                  <p className="text-white/40 text-[10px] font-[var(--font-mono)] uppercase">This month</p>
+                </div>
+                <div>
+                  <p className="font-[var(--font-headline)] text-lg font-extrabold text-secondary">1,847</p>
+                  <p className="text-white/40 text-[10px] font-[var(--font-mono)] uppercase">Active users</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </AnimateOnScroll>
 
       {/* Integrations */}
       <section className="mb-20 md:mb-32">
