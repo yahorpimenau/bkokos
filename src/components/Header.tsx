@@ -4,13 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Logo } from "./Logo";
+import { IconGlobe, IconGear, IconChart, IconRocket, IconChat, IconMail } from "./Icons";
 
 const navLinks = [
-  { href: "/services", label: "Services" },
-  { href: "/process", label: "How We Work" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
+  { href: "/services", label: "Services", desc: "What we build", Icon: IconGlobe },
+  { href: "/process", label: "How We Work", desc: "Our process", Icon: IconGear },
+  { href: "/pricing", label: "Pricing", desc: "Transparent plans", Icon: IconChart },
+  { href: "/blog", label: "Blog", desc: "Insights & guides", Icon: IconChat },
+  { href: "/about", label: "About", desc: "Our story", Icon: IconRocket },
 ];
 
 export function Header() {
@@ -24,10 +25,17 @@ export function Header() {
     };
   }, [mobileOpen]);
 
+  // Close on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   return (
     <header className="w-full top-0 sticky z-40 bg-background/80 backdrop-blur-md border-b-[1.5pt] border-primary/10">
       <nav className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
         <Logo />
+
+        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
@@ -43,6 +51,8 @@ export function Header() {
             </Link>
           ))}
         </div>
+
+        {/* CTA + Hamburger */}
         <div className="flex items-center gap-3">
           <Link
             href="/contact"
@@ -51,32 +61,90 @@ export function Header() {
             Let&apos;s Talk
           </Link>
           <button
-            className="md:hidden flex flex-col gap-1.5 p-2"
+            className="md:hidden relative w-10 h-10 flex items-center justify-center"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
-            <span className={`w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            <span className={`absolute w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "rotate-45" : "-translate-y-2"}`} />
+            <span className={`absolute w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "opacity-0 scale-0" : ""}`} />
+            <span className={`absolute w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "-rotate-45" : "translate-y-2"}`} />
           </button>
         </div>
       </nav>
-      {mobileOpen && (
-        <div className="md:hidden mobile-menu-enter border-t border-primary/10 bg-background/95 backdrop-blur-lg px-6 pb-6">
-          <div className="flex flex-col gap-4 pt-4">
-            {navLinks.map((link) => (
-              <Link key={link.label} href={link.href} onClick={() => setMobileOpen(false)}
-                className="text-lg font-medium text-on-surface-variant hover:text-tertiary transition-colors py-2 border-b border-primary/5">
-                {link.label}
+
+      {/* Full-screen mobile menu */}
+      <div
+        className={`md:hidden fixed inset-0 top-[65px] z-50 transition-all duration-300 ${
+          mobileOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Backdrop */}
+        <div className="absolute inset-0 bg-primary/60 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+
+        {/* Panel */}
+        <div
+          className={`relative bg-background h-full overflow-y-auto transition-transform duration-300 ${
+            mobileOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="px-6 py-8 flex flex-col min-h-full">
+            {/* Nav Links */}
+            <div className="space-y-2 flex-grow">
+              {navLinks.map((link, i) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`flex items-center gap-4 p-4 rounded-2xl transition-all duration-200 ${
+                      isActive
+                        ? "bg-burnt-orange/10 border-[1.5pt] border-burnt-orange/20"
+                        : "hover:bg-surface-container border-[1.5pt] border-transparent"
+                    }`}
+                    style={{ animationDelay: `${i * 50}ms` }}
+                  >
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${
+                      isActive ? "bg-burnt-orange/20" : "bg-surface-container-high"
+                    }`}>
+                      <link.Icon className={`w-5 h-5 ${isActive ? "text-burnt-orange" : "text-primary"}`} />
+                    </div>
+                    <div>
+                      <span className={`font-[var(--font-headline)] font-bold block ${isActive ? "text-burnt-orange" : "text-primary"}`}>
+                        {link.label}
+                      </span>
+                      <span className="text-on-surface-variant text-xs">{link.desc}</span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Bottom section */}
+            <div className="mt-8 pt-6 border-t border-primary/10 space-y-4">
+              {/* Contact info */}
+              <a
+                href="mailto:hello@bigkokos.dev"
+                className="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors"
+              >
+                <IconMail className="w-4 h-4" />
+                <span className="text-sm">hello@bigkokos.dev</span>
+              </a>
+
+              {/* CTA */}
+              <Link
+                href="/contact"
+                onClick={() => setMobileOpen(false)}
+                className="block bg-burnt-orange text-white px-6 py-4 rounded-2xl font-bold text-center text-lg hover:scale-[1.02] transition-transform shadow-lg btn-glow"
+              >
+                Let&apos;s Talk
               </Link>
-            ))}
-            <Link href="/contact" onClick={() => setMobileOpen(false)}
-              className="bg-burnt-orange text-white px-6 py-3 rounded-full font-bold text-center mt-2 hover:scale-105 transition-transform">
-              Let&apos;s Talk
-            </Link>
+            </div>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }
