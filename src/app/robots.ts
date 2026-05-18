@@ -4,9 +4,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
-      disallow: ["/api/", "/thank-you"],
+      disallow: "/",
     },
-    sitemap: "https://bkokos.vercel.app/sitemap.xml",
   };
 }

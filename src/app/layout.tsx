@@ -27,6 +27,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: false },
   title: {
     default: "Big Kokos | Full-Service Development",
     template: "%s | Big Kokos",
