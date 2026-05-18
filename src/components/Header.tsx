@@ -4,14 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Logo } from "./Logo";
-import { IconGlobe, IconGear, IconChart, IconRocket, IconChat, IconMail } from "./Icons";
+import { IconMail } from "./Icons";
 
 const navLinks = [
-  { href: "/services", label: "Services", desc: "What we build", Icon: IconGlobe },
-  { href: "/process", label: "How We Work", desc: "Our process", Icon: IconGear },
-  { href: "/pricing", label: "Pricing", desc: "Transparent plans", Icon: IconChart },
-  { href: "/blog", label: "Blog", desc: "Insights & guides", Icon: IconChat },
-  { href: "/about", label: "About", desc: "Our story", Icon: IconRocket },
+  { href: "/services", label: "Services", desc: "What we build", emoji: "🌐" },
+  { href: "/process", label: "How We Work", desc: "Our process", emoji: "⚙️" },
+  { href: "/pricing", label: "Pricing", desc: "Transparent plans", emoji: "💰" },
+  { href: "/blog", label: "Blog", desc: "Insights & guides", emoji: "📝" },
+  { href: "/about", label: "About", desc: "Our story", emoji: "👋" },
 ];
 
 export function Header() {
@@ -56,46 +56,59 @@ export function Header() {
               Let&apos;s Talk
             </Link>
 
-            {/* Hamburger */}
-            <button
-              className="md:hidden relative w-10 h-10 flex items-center justify-center z-50"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-            >
-              <span className={`absolute w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "rotate-45" : "-translate-y-2"}`} />
-              <span className={`absolute w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "opacity-0 scale-0" : ""}`} />
-              <span className={`absolute w-6 h-0.5 bg-primary transition-all duration-300 ${mobileOpen ? "-rotate-45" : "translate-y-2"}`} />
-            </button>
+            {/* Hamburger — only visible when menu is closed */}
+            {!mobileOpen && (
+              <button
+                className="md:hidden relative w-10 h-10 flex items-center justify-center"
+                onClick={() => setMobileOpen(true)}
+                aria-label="Open menu"
+              >
+                <span className="absolute w-6 h-0.5 bg-primary -translate-y-2" />
+                <span className="absolute w-6 h-0.5 bg-primary" />
+                <span className="absolute w-6 h-0.5 bg-primary translate-y-2" />
+              </button>
+            )}
           </div>
         </nav>
       </header>
 
-      {/* Mobile menu — fullscreen overlay */}
+      {/* Mobile menu — fullscreen */}
       {mobileOpen && (
-        <div className="md:hidden fixed inset-0 z-[45] bg-background flex flex-col animate-fade-in-up" style={{ animationDuration: "200ms" }}>
-          {/* Top bar spacer (matches header height) */}
-          <div className="h-[65px] shrink-0" />
+        <div className="md:hidden fixed inset-0 z-50 bg-background flex flex-col">
+          {/* Top bar with logo + close */}
+          <div className="flex items-center justify-between px-6 py-4 border-b border-primary/10 shrink-0">
+            <Logo />
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-container-high active:bg-surface-container-highest transition-colors"
+              aria-label="Close menu"
+            >
+              <svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
 
-          {/* Nav links */}
+          {/* Nav */}
           <div className="flex-grow overflow-y-auto px-6 py-6 space-y-2">
-            {navLinks.map((link, i) => {
+            {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`flex items-center gap-4 p-4 rounded-2xl transition-all duration-200 ${
+                  className={`flex items-center gap-4 p-4 rounded-2xl transition-colors ${
                     isActive
                       ? "bg-burnt-orange/10 border-[1.5pt] border-burnt-orange/20"
                       : "border-[1.5pt] border-transparent active:bg-surface-container"
                   }`}
-                  style={{ animationDelay: `${i * 40}ms` }}
                 >
-                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 text-xl ${
                     isActive ? "bg-burnt-orange/20" : "bg-surface-container-high"
                   }`}>
-                    <link.Icon className={`w-5 h-5 ${isActive ? "text-burnt-orange" : "text-primary"}`} />
+                    {link.emoji}
                   </div>
                   <div>
                     <span className={`font-[var(--font-headline)] font-bold block text-base ${isActive ? "text-burnt-orange" : "text-primary"}`}>
@@ -103,6 +116,9 @@ export function Header() {
                     </span>
                     <span className="text-on-surface-variant text-xs">{link.desc}</span>
                   </div>
+                  {isActive && (
+                    <div className="ml-auto w-2 h-2 rounded-full bg-burnt-orange shrink-0" />
+                  )}
                 </Link>
               );
             })}
