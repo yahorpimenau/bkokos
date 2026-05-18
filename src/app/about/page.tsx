@@ -94,7 +94,7 @@ export default function AboutPage() {
       <AnimateOnScroll animation="scale-in">
         <div className="bg-primary text-on-primary p-8 md:p-16 rounded-2xl md:rounded-[3rem] text-center">
           <h2 className="font-[var(--font-headline)] text-2xl md:text-3xl font-extrabold mb-4">Want to work together?</h2>
-          <p className="text-primary-fixed-dim mb-8">We&apos;d love to hear about your project. Let&apos;s crack a coconut.</p>
+          <p className="text-primary-fixed-dim mb-8">We&apos;d love to hear about your project.</p>
           <Link href="/contact" className="inline-block bg-burnt-orange text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all btn-glow">
             Start a Conversation
           </Link>

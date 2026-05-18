@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
-import { IconShield, IconDroplet, IconTree, IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconWrench, IconCoconut, IconHammer, IconCup } from "@/components/Icons";
+import { IconShield, IconDroplet, IconBuild, IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconWrench, IconChat, IconHammer, IconRocket as IconLaunch } from "@/components/Icons";
 import { IntegrationsMarquee } from "@/components/IntegrationsMarquee";
 
 export default function HomePage() {
@@ -12,32 +12,32 @@ export default function HomePage() {
           <div className="z-10">
             <AnimateOnScroll animation="fade-in-left">
               <span className="font-[var(--font-mono)] text-xs uppercase tracking-widest text-secondary font-bold mb-4 block">
-                Full-Service Development
+                Full-Service Development Partner
               </span>
             </AnimateOnScroll>
             <AnimateOnScroll animation="fade-in-left" delay={100}>
               <h1 className="font-[var(--font-headline)] text-4xl sm:text-5xl md:text-[48px] font-extrabold text-primary mb-6 leading-tight tracking-tight">
-                Crack Open Your
+                Build, launch, and
                 <br />
-                <span className="text-burnt-orange">Digital Growth</span>
+                <span className="text-burnt-orange">scale — with one team.</span>
               </h1>
             </AnimateOnScroll>
             <AnimateOnScroll animation="fade-in-left" delay={200}>
               <p className="text-base sm:text-lg text-on-surface-variant mb-8 md:mb-10 max-w-xl leading-relaxed">
-                Websites, apps, CRM integrations, automation &mdash; all under one shell.
-                Turnkey development for startups and businesses.
+                Websites, apps, CRM integrations, and automation — all from one team.
+                Turnkey development for startups and growing businesses.
               </p>
             </AnimateOnScroll>
             <AnimateOnScroll animation="fade-in-left" delay={300}>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/pricing" className="bg-burnt-orange text-white px-8 sm:px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-200 soft-shadow btn-glow text-center squishy-interaction">
-                  Get a Coconut Plan
+                <Link href="/contact" className="bg-burnt-orange text-white px-8 sm:px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-200 soft-shadow btn-glow text-center squishy-interaction">
+                  Get a Free Quote
                 </Link>
                 <Link href="/process" className="tough-border border-primary text-primary px-8 sm:px-10 py-4 rounded-full font-bold text-lg hover:bg-primary/5 transition-colors duration-200 text-center">
                   See How We Work
                 </Link>
               </div>
-              <p className="text-on-surface-variant text-sm mt-4 font-[var(--font-mono)]">From MVP to enterprise &mdash; we deliver.</p>
+              <p className="text-on-surface-variant text-sm mt-4 font-[var(--font-mono)]">From MVP to enterprise — we deliver.</p>
             </AnimateOnScroll>
           </div>
           <AnimateOnScroll animation="fade-in-right" delay={200} className="relative flex justify-center items-center">
@@ -50,14 +50,14 @@ export default function HomePage() {
       {/* Value Proposition */}
       <section className="py-16 md:py-24 px-6 max-w-7xl mx-auto">
         <AnimateOnScroll className="text-center mb-12 md:mb-16">
-          <h2 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold text-primary mb-4">Why Big Kokos?</h2>
+          <h2 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold text-primary mb-4">Why teams choose us</h2>
           <p className="text-on-surface-variant max-w-2xl mx-auto">One team, one contract, zero headaches.</p>
         </AnimateOnScroll>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {[
-            { Icon: IconShield, bg: "bg-primary-container", color: "text-on-primary-container", title: "Hard-Shell Security", desc: "We build robust, scalable solutions with enterprise-grade protection. Your data and code are locked tight.", link: "/services" },
-            { Icon: IconDroplet, bg: "bg-secondary-container", color: "text-on-secondary-container", title: "Smooth Integration", desc: "CRM, APIs, legacy systems — our flow connects everything seamlessly. No more silos.", link: "/services" },
-            { Icon: IconTree, bg: "bg-tertiary-container", color: "text-on-tertiary-container", title: "One Tree, All Fruits", desc: "Websites, mobile apps, automation, cloud — one team, one contract, zero headaches. Truly turnkey.", link: "/services" },
+            { Icon: IconShield, bg: "bg-primary-container", color: "text-on-primary-container", title: "Built-In Security", desc: "Enterprise-grade protection from day one. Encrypted data, secure APIs, compliance-ready architecture.", link: "/services" },
+            { Icon: IconDroplet, bg: "bg-secondary-container", color: "text-on-secondary-container", title: "Seamless Integration", desc: "CRM, APIs, legacy systems — we connect everything so your data flows without friction.", link: "/services" },
+            { Icon: IconBuild, bg: "bg-tertiary-container", color: "text-on-tertiary-container", title: "One Team, Full Stack", desc: "Websites, mobile apps, automation, cloud — one partner for everything. No vendor juggling.", link: "/services" },
           ].map((card, i) => (
             <AnimateOnScroll key={card.title} delay={i * 150}>
               <Link href={card.link} className="block bg-white tough-border p-6 md:p-8 rounded-xl soft-shadow group hover:scale-[1.03] hover:shadow-xl transition-all duration-300 h-full">
@@ -89,7 +89,7 @@ export default function HomePage() {
               { Icon: IconLink, title: "CRM & Integrations", desc: "Connect HubSpot, Salesforce, Pipedrive, or any custom CRM. Automate leads, sync data, save hours." },
               { Icon: IconGear, title: "Custom Automation", desc: "Workflows, scripts, AI agents — we automate the repetitive so you focus on growth." },
               { Icon: IconRocket, title: "MVP in a Week", desc: "Got an idea? We'll build a minimum viable product fast. Test, iterate, scale." },
-              { Icon: IconWrench, title: "Maintenance & Support", desc: "24/7 coconut-care plans. We're here when you need us." },
+              { Icon: IconWrench, title: "Maintenance & Support", desc: "24/7 support plans. We're here when you need us." },
             ].map((s, i) => (
               <AnimateOnScroll key={s.title} delay={i * 100}>
                 <div className="bg-white tough-border p-6 rounded-xl soft-shadow hover:scale-[1.02] hover:shadow-lg transition-all duration-300 h-full group">
@@ -125,13 +125,13 @@ export default function HomePage() {
       <section className="py-16 md:py-24 px-6 max-w-7xl mx-auto">
         <AnimateOnScroll className="text-center mb-12 md:mb-20">
           <h2 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold text-primary mb-4">How it works</h2>
-          <p className="text-on-surface-variant">Three simple steps from idea to launch.</p>
+          <p className="text-on-surface-variant">Three steps from idea to launch.</p>
         </AnimateOnScroll>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {[
-            { Icon: IconCoconut, num: "01", title: "Pick the Coconut", desc: "Tell us your needs. Discovery call + free consultation." },
-            { Icon: IconHammer, num: "02", title: "Crack It Open", desc: "We design, build, and integrate — transparent sprints, weekly updates." },
-            { Icon: IconCup, num: "03", title: "Enjoy the Refreshment", desc: "Launch, train your team, and keep growing. We stay for support." },
+            { Icon: IconChat, num: "01", title: "Discovery", desc: "Tell us your needs. Free consultation to map the scope, timeline, and budget." },
+            { Icon: IconHammer, num: "02", title: "Design & Build", desc: "We design, develop, and integrate — transparent sprints, weekly updates." },
+            { Icon: IconRocket, num: "03", title: "Launch & Grow", desc: "Go live, train your team, and keep scaling. We stay for ongoing support." },
           ].map((step, i) => (
             <AnimateOnScroll key={step.num} delay={i * 150} className="text-center">
               <div className="w-20 h-20 md:w-24 md:h-24 bg-white tough-border mx-auto rounded-full flex items-center justify-center mb-4 md:mb-6 soft-shadow relative group hover:scale-110 transition-transform duration-300">
@@ -158,8 +158,8 @@ export default function HomePage() {
           </AnimateOnScroll>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              { quote: "Big Kokos turned our scattered tools into one smooth workflow. Websites, CRM, mobile app — all delivered in 3 months.", name: "Alex M.", title: "Founder of GreenLeaf" },
-              { quote: "Finally a dev partner who thinks like a builder, not a salesperson. The coconut metaphor actually works.", name: "Sofia R.", title: "CTO of Lume" },
+              { quote: "Big Kokos turned our scattered tools into one smooth workflow. Website, CRM, mobile app — all delivered in 3 months.", name: "Alex M.", title: "Founder, GreenLeaf" },
+              { quote: "They delivered our MVP two weeks early and it just worked. No drama, no scope creep — just solid engineering.", name: "Sofia R.", title: "CTO, Lume" },
             ].map((t, i) => (
               <AnimateOnScroll key={t.name} delay={i * 150} animation={i === 0 ? "fade-in-left" : "fade-in-right"}>
                 <div className="bg-white tough-border p-6 md:p-8 rounded-2xl soft-shadow h-full">
@@ -180,10 +180,10 @@ export default function HomePage() {
         <AnimateOnScroll>
           <div className="max-w-2xl mx-auto">
             <h3 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold text-white mb-4">
-              Ready to go nuts? <span className="opacity-60">(In a good way)</span>
+              Ready to build something great?
             </h3>
             <p className="text-primary-fixed-dim mb-8 md:mb-10">
-              Let&apos;s crack your project together. Free quote, no pressure.
+              Let&apos;s bring your project to life. Free quote, no pressure.
             </p>
             <Link href="/contact" className="inline-block bg-burnt-orange text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all btn-glow">
               Start a Conversation

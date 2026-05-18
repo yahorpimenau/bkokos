@@ -1,19 +1,27 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
-import { IconSprout, IconCoconut, IconHammer, IconCup, IconPalm, IconHandshake, IconScroll, IconCoins } from "@/components/Icons";
+import { IconSprout, IconScroll, IconHammer, IconRocket, IconWrench, IconHandshake, IconCoins } from "@/components/Icons";
 
 const stages = [
-  { Icon: IconSprout, title: "Seed", desc: "Free discovery call. We listen, ask questions, map your needs." },
-  { Icon: IconCoconut, title: "Green Coconut", desc: "Proposal, timeline, fixed price or retainer. You approve." },
-  { Icon: IconHammer, title: "Cracking", desc: "Agile development. Weekly demos, Slack channel, full transparency." },
-  { Icon: IconCup, title: "Sipping", desc: "Launch + 30-day hyper-care. We fix anything, fast." },
-  { Icon: IconPalm, title: "Coconut Grove", desc: "Ongoing support, updates, and scaling — monthly or hourly." },
+  { Icon: IconSprout, title: "Discovery", desc: "Free discovery call. We listen, ask questions, and map your needs." },
+  { Icon: IconScroll, title: "Proposal", desc: "Clear scope, timeline, and fixed price or retainer. You approve before anything starts." },
+  { Icon: IconHammer, title: "Development", desc: "Agile sprints. Weekly demos, dedicated Slack channel, full transparency." },
+  { Icon: IconRocket, title: "Launch", desc: "Go live + 30-day hyper-care period. We fix anything, fast." },
+  { Icon: IconWrench, title: "Ongoing Support", desc: "Continuous maintenance, updates, and scaling — monthly or hourly." },
 ];
 
 const guarantees = [
   { Icon: IconHandshake, title: "No lock-in contracts", desc: "Pay as you grow. Leave whenever you want — but you won't want to." },
   { Icon: IconScroll, title: "IP is yours", desc: "Full code ownership after payment. No strings attached." },
   { Icon: IconCoins, title: "Deadline guarantee", desc: "Money-back if we miss a deadline. Terms apply — ask us." },
+];
+
+const faqs = [
+  { q: "How long does a typical project take?", a: "A landing page takes 1–2 weeks. A full web app with CRM integration is usually 6–12 weeks. MVPs can ship in 2–4 weeks." },
+  { q: "What technologies do you use?", a: "React, Next.js, Vue, Node.js, Python, Laravel, React Native, Flutter — we pick the best tool for your project, not our favorite." },
+  { q: "Do you work with our timezone?", a: "Yes. We adapt to your working hours and provide async updates via Slack so nothing slows down." },
+  { q: "What if the project scope changes?", a: "We use agile sprints specifically for this. Scope changes are normal — we reprioritize and requote transparently." },
+  { q: "How do payments work?", a: "Fixed-price projects: 30% upfront, 40% at mid-point, 30% on delivery. Retainers: monthly billing." },
 ];
 
 export default function ProcessPage() {
@@ -80,6 +88,28 @@ export default function ProcessPage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="mb-20 md:mb-32 max-w-3xl mx-auto">
+        <AnimateOnScroll className="text-center mb-12">
+          <h2 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold text-primary mb-4">Frequently asked questions</h2>
+        </AnimateOnScroll>
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <AnimateOnScroll key={faq.q} delay={i * 80}>
+              <details className="bg-white tough-border rounded-2xl soft-shadow group open:shadow-lg transition-all">
+                <summary className="flex items-center justify-between p-5 md:p-6 cursor-pointer font-[var(--font-headline)] font-bold text-primary text-base md:text-lg select-none list-none [&::-webkit-details-marker]:hidden">
+                  <span>{faq.q}</span>
+                  <span className="text-burnt-orange ml-4 shrink-0 group-open:rotate-45 transition-transform text-xl">+</span>
+                </summary>
+                <div className="px-5 md:px-6 pb-5 md:pb-6 text-on-surface-variant text-sm md:text-base leading-relaxed border-t border-primary/5 pt-4">
+                  {faq.a}
+                </div>
+              </details>
+            </AnimateOnScroll>
+          ))}
+        </div>
+      </section>
+
       {/* CTA */}
       <AnimateOnScroll animation="scale-in">
         <div className="bg-primary text-on-primary p-8 md:p-16 rounded-2xl md:rounded-[3rem] text-center relative overflow-hidden">
@@ -87,7 +117,7 @@ export default function ProcessPage() {
           <div className="relative z-10">
             <h2 className="font-[var(--font-headline)] text-2xl md:text-3xl font-extrabold mb-4">Ready to start?</h2>
             <p className="text-primary-fixed-dim mb-8 max-w-lg mx-auto">
-              Book a free discovery call. We&apos;ll listen, map your needs, and give you a fixed quote within 48 hours.
+              Book a free discovery call. We&apos;ll map your needs and give you a fixed quote within 48 hours.
             </p>
             <Link href="/contact" className="inline-block bg-burnt-orange text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all btn-glow">
               Book a Free Call

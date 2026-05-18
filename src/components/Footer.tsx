@@ -8,7 +8,7 @@ export function Footer() {
         <div className="col-span-2 md:col-span-1 mb-4 md:mb-0">
           <div className="mb-4"><Logo size="md" /></div>
           <p className="text-on-surface-variant text-sm pr-4">
-            Hard-shell reliability, smooth inside. End-to-end development for startups and businesses.
+            End-to-end development for startups and growing businesses. One team, full stack.
           </p>
         </div>
         <div className="flex flex-col gap-3">
@@ -30,7 +30,7 @@ export function Footer() {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-6 py-6 md:py-8 border-t border-primary/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p className="text-on-surface-variant text-xs md:text-sm">&copy; 2024 Big Kokos. All rights reserved.</p>
+        <p className="text-on-surface-variant text-xs md:text-sm">&copy; {new Date().getFullYear()} Big Kokos. All rights reserved.</p>
         <div className="flex gap-5 text-on-surface-variant text-sm">
           <Link href="/services" className="hover:text-secondary transition-colors">Services</Link>
           <Link href="/process" className="hover:text-secondary transition-colors">Process</Link>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
-import { IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconPalm, IconCoconut, IconMail, IconCall } from "@/components/Icons";
+import { IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconBuild, IconMail, IconCall, IconShield } from "@/components/Icons";
 
 const serviceOptions = [
   { value: "website", label: "Website / Web App", Icon: IconGlobe },
@@ -11,7 +11,7 @@ const serviceOptions = [
   { value: "crm", label: "CRM Integration", Icon: IconLink },
   { value: "automation", label: "Automation", Icon: IconGear },
   { value: "mvp", label: "MVP / Startup", Icon: IconRocket },
-  { value: "everything", label: "Full Package", Icon: IconPalm },
+  { value: "everything", label: "Full Package", Icon: IconBuild },
 ];
 
 const budgetOptions = [
@@ -38,10 +38,10 @@ export default function ContactPage() {
         <AnimateOnScroll animation="scale-in">
           <div className="bg-white tough-border p-10 md:p-16 rounded-3xl soft-shadow">
             <div className="w-20 h-20 bg-secondary-container rounded-full flex items-center justify-center mx-auto mb-6">
-              <IconCoconut className="w-10 h-10 text-secondary" />
+              <IconShield className="w-10 h-10 text-secondary" />
             </div>
             <h1 className="font-[var(--font-headline)] text-3xl md:text-4xl font-extrabold text-primary mb-4">
-              Coconut received!
+              Message received!
             </h1>
             <p className="text-on-surface-variant text-lg mb-8">
               We&apos;ll get back to you within 24 hours with a clear next step.
@@ -66,7 +66,7 @@ export default function ContactPage() {
           Start a Project
         </div>
         <h1 className="font-[var(--font-headline)] text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary mb-4 tracking-tight">
-          Crack a coconut with us
+          Let&apos;s build together
         </h1>
         <p className="text-base md:text-lg text-on-surface-variant">
           Tell us about your project. We reply within 24 hours with a clear next step.
@@ -219,7 +219,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="text-xs text-on-surface-variant">Quick call</p>
-                <p className="text-primary font-bold text-sm">Book a 15-min Coconut Chat</p>
+                <p className="text-primary font-bold text-sm">Book a 15-min Discovery Call</p>
               </div>
             </a>
           </div>

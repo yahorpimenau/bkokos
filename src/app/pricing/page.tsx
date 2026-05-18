@@ -4,7 +4,7 @@ import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 const plans = [
   {
     label: "Starter",
-    name: "Young Coconut",
+    name: "Starter",
     price: "From $2,500",
     period: "one-time",
     desc: "Small website or simple CRM integration",
@@ -14,7 +14,7 @@ const plans = [
   },
   {
     label: "Professional",
-    name: "Ripe Coconut",
+    name: "Professional",
     price: "From $8,000",
     period: "one-time",
     desc: "Full website + CRM + automation",
@@ -24,7 +24,7 @@ const plans = [
   },
   {
     label: "Enterprise",
-    name: "King Coconut",
+    name: "Enterprise",
     price: "From $15,000+",
     period: "project-based",
     desc: "Custom platform / mobile app + ongoing support",
@@ -46,7 +46,7 @@ export default function PricingPage() {
         </AnimateOnScroll>
         <AnimateOnScroll delay={100}>
           <h1 className="font-[var(--font-headline)] text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary max-w-2xl mx-auto tracking-tight">
-            Pick your coconut
+            Choose your plan
           </h1>
         </AnimateOnScroll>
         <AnimateOnScroll delay={200}>
@@ -102,7 +102,7 @@ export default function PricingPage() {
       {/* Retainer */}
       <AnimateOnScroll>
         <div className="bg-surface-container p-6 md:p-10 rounded-2xl tough-border text-center max-w-2xl mx-auto mb-20">
-          <h3 className="font-[var(--font-headline)] text-xl md:text-2xl font-bold text-primary mb-2">Coconut Grove Retainer</h3>
+          <h3 className="font-[var(--font-headline)] text-xl md:text-2xl font-bold text-primary mb-2">Monthly Retainer</h3>
           <p className="text-on-surface-variant mb-4">Unlimited small tasks, priority support, ongoing development.</p>
           <div className="text-3xl font-extrabold text-primary mb-4">$2,000 <span className="text-base font-normal text-on-surface-variant">/ month</span></div>
           <Link href="/contact" className="inline-block border-2 border-primary text-primary px-8 py-3 rounded-full font-bold hover:bg-primary hover:text-white transition-colors">
