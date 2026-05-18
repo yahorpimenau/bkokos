@@ -10,6 +10,14 @@ export const metadata: Metadata = {
     "Our process from discovery to delivery: transparent, structured, and built around your needs.",
 };
 
+const stages = [
+  { Icon: IconSprout, title: "Discovery", desc: "Free call. We listen, ask the right questions, and map your needs — scope, goals, constraints.", time: "Day 1", color: "burnt-orange" },
+  { Icon: IconScroll, title: "Proposal", desc: "Clear scope document, timeline, and a fixed-price quote. No work starts until you approve.", time: "Day 2–3", color: "secondary" },
+  { Icon: IconHammer, title: "Development", desc: "Agile sprints with weekly demos. Dedicated Slack channel. You see progress, give feedback, stay in control.", time: "Week 1–12", color: "primary" },
+  { Icon: IconRocket, title: "Launch", desc: "Production deployment + 30-day hyper-care. We monitor, fix, and optimize — fast.", time: "Launch day", color: "burnt-orange" },
+  { Icon: IconWrench, title: "Ongoing Support", desc: "Continuous maintenance, feature updates, and scaling. Monthly retainer or pay-as-you-go.", time: "Ongoing", color: "secondary" },
+];
+
 const guarantees = [
   { Icon: IconHandshake, title: "No lock-in contracts", desc: "Pay as you grow. Leave whenever you want." },
   { Icon: IconScroll, title: "Your IP, always", desc: "Full code ownership after payment. No strings." },
@@ -24,213 +32,89 @@ const faqs = [
   { q: "How do payments work?", a: "Fixed-price projects: 30% upfront, 40% at mid-point, 30% on delivery. Retainers: monthly billing." },
 ];
 
+function clr(color: string, type: "bg" | "text" | "border") {
+  const map: Record<string, Record<string, string>> = {
+    "burnt-orange": { bg: "bg-burnt-orange", text: "text-burnt-orange", border: "border-burnt-orange" },
+    secondary: { bg: "bg-secondary", text: "text-secondary", border: "border-secondary" },
+    primary: { bg: "bg-primary", text: "text-primary", border: "border-primary" },
+  };
+  return map[color]?.[type] || "";
+}
+
 export default function ProcessPage() {
   return (
     <>
       <FAQJsonLd items={faqs} />
-
-      {/* Hero — full width dark */}
-      <section className="bg-primary text-white px-6 py-16 md:py-28 text-center relative overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-burnt-orange/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
-        <div className="relative z-10 max-w-3xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
+        {/* Hero */}
+        <section className="mb-16 md:mb-24 text-center">
           <AnimateOnScroll>
-            <span className="inline-block font-[var(--font-mono)] text-xs uppercase tracking-widest text-white/50 font-bold mb-6 border border-white/15 rounded-full px-4 py-1.5 bg-white/5">
-              Your Journey
-            </span>
+            <div className="inline-block px-4 py-1 rounded-full bg-secondary-container text-on-secondary-container font-[var(--font-mono)] text-xs mb-6 uppercase">
+              Our Process
+            </div>
           </AnimateOnScroll>
           <AnimateOnScroll delay={100}>
-            <h1 className="font-[var(--font-headline)] text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 tracking-tight leading-[1.1]">
-              From &ldquo;I have an idea&rdquo;
-              <br />
-              to <span className="text-burnt-orange">&ldquo;It&apos;s live.&rdquo;</span>
+            <h1 className="font-[var(--font-headline)] text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary mb-6 tracking-tight">
+              From discovery to delivery
             </h1>
           </AnimateOnScroll>
           <AnimateOnScroll delay={200}>
-            <p className="text-white/60 text-base md:text-lg max-w-xl mx-auto">
-              Five stages. Full transparency. You know exactly what&apos;s happening at every step.
+            <p className="text-base md:text-lg text-on-surface-variant max-w-2xl mx-auto">
+              Transparent, structured, and built around your needs.
             </p>
           </AnimateOnScroll>
-        </div>
-      </section>
+        </section>
 
-      {/* Journey stages — alternating layout */}
-      <section className="max-w-6xl mx-auto px-6 -mt-8 md:-mt-12 relative z-10 mb-20 md:mb-32">
-        <div className="space-y-6 md:space-y-0">
+        {/* Timeline */}
+        <section className="mb-20 md:mb-32 max-w-4xl mx-auto">
+          <div className="relative">
+            {/* Vertical line — desktop */}
+            <div className="hidden md:block absolute left-8 top-8 bottom-8 w-px bg-gradient-to-b from-burnt-orange via-secondary to-primary" />
 
-          {/* Stage 1 — Discovery */}
-          <AnimateOnScroll animation="fade-in-up">
-            <div className="md:grid md:grid-cols-2 md:gap-0">
-              <div className="bg-white tough-border rounded-2xl md:rounded-3xl p-6 md:p-10 soft-shadow relative md:z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-burnt-orange rounded-xl flex items-center justify-center">
-                    <IconSprout className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="font-[var(--font-mono)] text-[11px] uppercase tracking-wider text-burnt-orange font-bold">Step 01</span>
-                </div>
-                <h3 className="font-[var(--font-headline)] text-2xl md:text-3xl font-extrabold text-primary mb-3">Discovery</h3>
-                <p className="text-on-surface-variant leading-relaxed mb-4">
-                  Free call. We listen, ask the right questions, and map your needs — goals, constraints, timeline.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {["Free consultation", "Scope mapping", "No commitment"].map((t) => (
-                    <span key={t} className="px-3 py-1 bg-burnt-orange/8 text-burnt-orange text-xs font-bold rounded-full">{t}</span>
-                  ))}
-                </div>
-              </div>
-              <div className="hidden md:flex items-center justify-center bg-surface-container-low rounded-r-3xl border-y-[1.5pt] border-r-[1.5pt] border-primary -ml-4 pl-8">
-                <div className="text-center">
-                  <div className="font-[var(--font-headline)] text-5xl font-extrabold text-primary/10">01</div>
-                  <div className="font-[var(--font-mono)] text-xs text-on-surface-variant/40 uppercase mt-1">Day 1</div>
-                </div>
-              </div>
-            </div>
-          </AnimateOnScroll>
-
-          {/* Stage 2 — Proposal (reversed) */}
-          <AnimateOnScroll animation="fade-in-up" delay={50}>
-            <div className="md:grid md:grid-cols-2 md:gap-0">
-              <div className="hidden md:flex items-center justify-center bg-surface-container-low rounded-l-3xl border-y-[1.5pt] border-l-[1.5pt] border-primary -mr-4 pr-8">
-                <div className="text-center">
-                  <div className="font-[var(--font-headline)] text-5xl font-extrabold text-secondary/10">02</div>
-                  <div className="font-[var(--font-mono)] text-xs text-on-surface-variant/40 uppercase mt-1">Day 2–3</div>
-                </div>
-              </div>
-              <div className="bg-white tough-border rounded-2xl md:rounded-3xl p-6 md:p-10 soft-shadow relative md:z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-secondary rounded-xl flex items-center justify-center">
-                    <IconScroll className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="font-[var(--font-mono)] text-[11px] uppercase tracking-wider text-secondary font-bold">Step 02</span>
-                </div>
-                <h3 className="font-[var(--font-headline)] text-2xl md:text-3xl font-extrabold text-primary mb-3">Proposal</h3>
-                <p className="text-on-surface-variant leading-relaxed mb-4">
-                  Clear scope document, timeline, and a fixed-price quote. Nothing starts until you say go.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {["Fixed price", "Clear timeline", "You approve first"].map((t) => (
-                    <span key={t} className="px-3 py-1 bg-secondary/8 text-secondary text-xs font-bold rounded-full">{t}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </AnimateOnScroll>
-
-          {/* Stage 3 — Development (full width dark) */}
-          <AnimateOnScroll animation="fade-in-up" delay={50}>
-            <div className="bg-primary text-white rounded-2xl md:rounded-3xl p-6 md:p-10 lg:p-14 relative overflow-hidden">
-              <div className="absolute -top-16 -right-16 w-48 h-48 bg-burnt-orange/15 rounded-full blur-3xl" />
-              <div className="relative z-10 md:flex md:items-center md:gap-14">
-                <div className="flex-1 mb-6 md:mb-0">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center">
-                      <IconHammer className="w-5 h-5 text-burnt-orange" />
+            <div className="space-y-0">
+              {stages.map((stage, i) => (
+                <AnimateOnScroll key={stage.title} delay={i * 120}>
+                  <div className="relative flex gap-6 md:gap-10 group">
+                    {/* Dot + connector */}
+                    <div className="hidden md:flex flex-col items-center shrink-0 w-16">
+                      <div className={`w-16 h-16 rounded-2xl ${clr(stage.color, "bg")}/10 flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300`}>
+                        <stage.Icon className={`w-7 h-7 ${clr(stage.color, "text")}`} />
+                      </div>
                     </div>
-                    <span className="font-[var(--font-mono)] text-[11px] uppercase tracking-wider text-burnt-orange font-bold">Step 03 — The Big One</span>
-                  </div>
-                  <h3 className="font-[var(--font-headline)] text-2xl md:text-3xl font-extrabold mb-3">Development</h3>
-                  <p className="text-white/70 leading-relaxed mb-4">
-                    Agile sprints with weekly demos. Dedicated Slack channel. You see real progress, give real feedback, stay in full control.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {["Weekly demos", "Slack channel", "Full transparency"].map((t) => (
-                      <span key={t} className="px-3 py-1 bg-white/10 border border-white/15 text-white/80 text-xs font-bold rounded-full">{t}</span>
-                    ))}
-                  </div>
-                </div>
-                {/* Mini sprint visualization */}
-                <div className="w-full md:w-56 shrink-0">
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-5 font-[var(--font-mono)] text-xs space-y-3">
-                    <div className="text-white/40 uppercase text-[10px]">Sprint 3 / Week 6</div>
-                    {[
-                      { label: "Dashboard UI", done: true },
-                      { label: "CRM sync", done: true },
-                      { label: "Auth flow", done: false },
-                    ].map((t) => (
-                      <div key={t.label} className="flex items-center gap-2">
-                        <div className={`w-4 h-4 rounded flex items-center justify-center ${t.done ? "bg-secondary" : "border border-white/30"}`}>
-                          {t.done && <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round"><polyline points="20 6 9 17 4 12" /></svg>}
+
+                    {/* Card */}
+                    <div className={`flex-1 bg-white border-[1.5pt] border-primary/10 rounded-2xl p-6 md:p-8 mb-6 group-hover:shadow-xl group-hover:${clr(stage.color, "border")}/20 transition-all duration-300`}>
+                      <div className="flex items-start gap-4 md:gap-0 md:items-center justify-between mb-3">
+                        <div className="flex items-center gap-3">
+                          {/* Mobile icon */}
+                          <div className={`md:hidden w-11 h-11 rounded-xl ${clr(stage.color, "bg")}/10 flex items-center justify-center shrink-0`}>
+                            <stage.Icon className={`w-5 h-5 ${clr(stage.color, "text")}`} />
+                          </div>
+                          <div>
+                            <h3 className="font-[var(--font-headline)] text-lg md:text-xl font-bold text-primary">{stage.title}</h3>
+                          </div>
                         </div>
-                        <span className={t.done ? "text-white/60 line-through" : "text-white/80"}>{t.label}</span>
+                        <span className={`font-[var(--font-mono)] text-[10px] md:text-xs uppercase tracking-wider font-bold px-3 py-1 rounded-full shrink-0 ${clr(stage.color, "bg")}/10 ${clr(stage.color, "text")}`}>
+                          {stage.time}
+                        </span>
                       </div>
-                    ))}
-                    <div className="pt-2 border-t border-white/10">
-                      <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                        <div className="h-full w-2/3 bg-gradient-to-r from-secondary to-burnt-orange rounded-full" />
-                      </div>
-                      <div className="text-white/40 text-[10px] mt-1.5">67% complete</div>
+                      <p className="text-on-surface-variant text-sm md:text-base leading-relaxed md:pl-0">
+                        {stage.desc}
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
+                </AnimateOnScroll>
+              ))}
             </div>
-          </AnimateOnScroll>
+          </div>
+        </section>
 
-          {/* Stage 4 — Launch (reversed) */}
-          <AnimateOnScroll animation="fade-in-up" delay={50}>
-            <div className="md:grid md:grid-cols-2 md:gap-0">
-              <div className="hidden md:flex items-center justify-center bg-surface-container-low rounded-l-3xl border-y-[1.5pt] border-l-[1.5pt] border-primary -mr-4 pr-8">
-                <div className="text-center">
-                  <div className="font-[var(--font-headline)] text-5xl font-extrabold text-burnt-orange/10">04</div>
-                  <div className="font-[var(--font-mono)] text-xs text-on-surface-variant/40 uppercase mt-1">Launch day</div>
-                </div>
-              </div>
-              <div className="bg-white tough-border rounded-2xl md:rounded-3xl p-6 md:p-10 soft-shadow relative md:z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-burnt-orange rounded-xl flex items-center justify-center">
-                    <IconRocket className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="font-[var(--font-mono)] text-[11px] uppercase tracking-wider text-burnt-orange font-bold">Step 04</span>
-                </div>
-                <h3 className="font-[var(--font-headline)] text-2xl md:text-3xl font-extrabold text-primary mb-3">Launch</h3>
-                <p className="text-on-surface-variant leading-relaxed mb-4">
-                  Production deployment with monitoring. 30-day hyper-care — we fix anything, fast. Your team gets trained.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {["Production deploy", "30-day hyper-care", "Team training"].map((t) => (
-                    <span key={t} className="px-3 py-1 bg-burnt-orange/8 text-burnt-orange text-xs font-bold rounded-full">{t}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </AnimateOnScroll>
-
-          {/* Stage 5 — Ongoing */}
-          <AnimateOnScroll animation="fade-in-up" delay={50}>
-            <div className="md:grid md:grid-cols-2 md:gap-0">
-              <div className="bg-white tough-border rounded-2xl md:rounded-3xl p-6 md:p-10 soft-shadow relative md:z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-secondary rounded-xl flex items-center justify-center">
-                    <IconWrench className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="font-[var(--font-mono)] text-[11px] uppercase tracking-wider text-secondary font-bold">Step 05</span>
-                </div>
-                <h3 className="font-[var(--font-headline)] text-2xl md:text-3xl font-extrabold text-primary mb-3">Ongoing Support</h3>
-                <p className="text-on-surface-variant leading-relaxed mb-4">
-                  We don&apos;t disappear after launch. Maintenance, new features, scaling — monthly retainer or pay-as-you-go.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {["Retainer or hourly", "Feature updates", "Scaling support"].map((t) => (
-                    <span key={t} className="px-3 py-1 bg-secondary/8 text-secondary text-xs font-bold rounded-full">{t}</span>
-                  ))}
-                </div>
-              </div>
-              <div className="hidden md:flex items-center justify-center bg-surface-container-low rounded-r-3xl border-y-[1.5pt] border-r-[1.5pt] border-primary -ml-4 pl-8">
-                <div className="text-center">
-                  <div className="font-[var(--font-headline)] text-5xl font-extrabold text-secondary/10">05</div>
-                  <div className="font-[var(--font-mono)] text-xs text-on-surface-variant/40 uppercase mt-1">Ongoing</div>
-                </div>
-              </div>
-            </div>
-          </AnimateOnScroll>
-        </div>
-      </section>
-
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Guarantees — dark */}
+        {/* Guarantees — dark block */}
         <AnimateOnScroll animation="scale-in" className="mb-20 md:mb-32">
           <div className="bg-primary text-white rounded-2xl md:rounded-3xl p-8 md:p-14 relative overflow-hidden">
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-burnt-orange/15 rounded-full blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-secondary/15 rounded-full blur-3xl" />
+
             <div className="relative z-10">
               <h2 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold mb-8 text-center">Our guarantees</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
