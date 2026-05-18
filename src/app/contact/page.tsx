@@ -1,114 +1,243 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
+const serviceOptions = [
+  { value: "website", label: "Website / Web App", icon: "🌐" },
+  { value: "mobile", label: "Mobile App", icon: "📱" },
+  { value: "crm", label: "CRM Integration", icon: "🔗" },
+  { value: "automation", label: "Automation", icon: "⚙️" },
+  { value: "mvp", label: "MVP / Startup", icon: "🚀" },
+  { value: "everything", label: "Full Package", icon: "🌴" },
+];
+
+const budgetOptions = [
+  "Under $5K",
+  "$5K – $15K",
+  "$15K – $50K",
+  "$50K+",
+  "Not sure yet",
+];
+
 export default function ContactPage() {
-  return (
-    <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-        {/* Left - Info */}
-        <div>
-          <AnimateOnScroll animation="fade-in-left">
-            <h1 className="font-[var(--font-headline)] text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary mb-6 tracking-tight">
-              Crack a coconut
-              <br />with us
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [submitted, setSubmitted] = useState(false);
+
+  function toggleService(value: string) {
+    setSelectedServices((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+    );
+  }
+
+  if (submitted) {
+    return (
+      <div className="max-w-2xl mx-auto px-6 py-24 md:py-40 text-center">
+        <AnimateOnScroll animation="scale-in">
+          <div className="bg-white tough-border p-10 md:p-16 rounded-3xl soft-shadow">
+            <div className="text-6xl mb-6">🥥</div>
+            <h1 className="font-[var(--font-headline)] text-3xl md:text-4xl font-extrabold text-primary mb-4">
+              Coconut received!
             </h1>
-          </AnimateOnScroll>
-          <AnimateOnScroll animation="fade-in-left" delay={100}>
-            <p className="text-base md:text-lg text-on-surface-variant mb-10 max-w-md">
-              Tell us about your project. We reply within 24 hours with a clear next step.
+            <p className="text-on-surface-variant text-lg mb-8">
+              We&apos;ll get back to you within 24 hours with a clear next step.
             </p>
-          </AnimateOnScroll>
+            <Link
+              href="/"
+              className="inline-block border-2 border-primary text-primary px-8 py-3 rounded-full font-bold hover:bg-primary hover:text-white transition-colors"
+            >
+              Back to Home
+            </Link>
+          </div>
+        </AnimateOnScroll>
+      </div>
+    );
+  }
 
-          <AnimateOnScroll animation="fade-in-left" delay={200}>
-            <div className="space-y-6 mb-10">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center text-xl">📧</div>
-                <div>
-                  <p className="text-sm text-on-surface-variant">Email</p>
-                  <a href="mailto:hello@bigkokos.dev" className="text-primary font-bold hover:text-burnt-orange transition-colors">hello@bigkokos.dev</a>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center text-xl">📞</div>
-                <div>
-                  <p className="text-sm text-on-surface-variant">Quick call</p>
-                  <a href="#" className="text-primary font-bold hover:text-burnt-orange transition-colors">Book a 15-min Coconut Chat</a>
-                </div>
-              </div>
-            </div>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll animation="fade-in-left" delay={300}>
-            <div className="bg-surface-container p-6 rounded-2xl">
-              <p className="font-[var(--font-mono)] text-xs text-on-surface-variant uppercase mb-2">Existing client?</p>
-              <p className="text-on-surface-variant text-sm">
-                Reach us on your dedicated Slack or Discord channel for priority support.
-              </p>
-            </div>
-          </AnimateOnScroll>
+  return (
+    <div className="max-w-7xl mx-auto px-6 py-12 md:py-20">
+      {/* Header */}
+      <AnimateOnScroll className="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
+        <div className="inline-block px-4 py-1 rounded-full bg-secondary-container text-on-secondary-container font-[var(--font-mono)] text-xs mb-6 uppercase">
+          Start a Project
         </div>
+        <h1 className="font-[var(--font-headline)] text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary mb-4 tracking-tight">
+          Crack a coconut with us
+        </h1>
+        <p className="text-base md:text-lg text-on-surface-variant">
+          Tell us about your project. We reply within 24 hours with a clear next step.
+        </p>
+      </AnimateOnScroll>
 
-        {/* Right - Form */}
-        <AnimateOnScroll animation="fade-in-right" delay={100}>
-          <form className="bg-white tough-border p-6 md:p-10 rounded-2xl md:rounded-3xl soft-shadow space-y-6">
-            <div>
-              <label className="block font-[var(--font-mono)] text-xs uppercase text-on-surface-variant mb-2">Name *</label>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+        {/* Form — takes 2 cols */}
+        <AnimateOnScroll animation="fade-in-left" className="lg:col-span-2">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setSubmitted(true);
+            }}
+            className="bg-white tough-border p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-3xl soft-shadow"
+          >
+            {/* Name + Email row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+              <div>
+                <label className="block font-[var(--font-mono)] text-[11px] uppercase text-on-surface-variant mb-2 tracking-wider">
+                  Name <span className="text-burnt-orange">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  className="w-full border-[1.5pt] border-primary/15 rounded-xl px-4 py-3.5 bg-surface-container-lowest text-primary placeholder:text-outline focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/15 outline-none transition-all"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label className="block font-[var(--font-mono)] text-[11px] uppercase text-on-surface-variant mb-2 tracking-wider">
+                  Email <span className="text-burnt-orange">*</span>
+                </label>
+                <input
+                  type="email"
+                  required
+                  className="w-full border-[1.5pt] border-primary/15 rounded-xl px-4 py-3.5 bg-surface-container-lowest text-primary placeholder:text-outline focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/15 outline-none transition-all"
+                  placeholder="you@company.com"
+                />
+              </div>
+            </div>
+
+            {/* Company */}
+            <div className="mb-5">
+              <label className="block font-[var(--font-mono)] text-[11px] uppercase text-on-surface-variant mb-2 tracking-wider">
+                Company <span className="text-outline font-normal normal-case">(optional)</span>
+              </label>
               <input
                 type="text"
-                required
-                className="w-full border-[1.5pt] border-primary/20 rounded-xl px-4 py-3 bg-surface-container-lowest focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/20 outline-none transition-all"
-                placeholder="Your name"
-              />
-            </div>
-            <div>
-              <label className="block font-[var(--font-mono)] text-xs uppercase text-on-surface-variant mb-2">Email *</label>
-              <input
-                type="email"
-                required
-                className="w-full border-[1.5pt] border-primary/20 rounded-xl px-4 py-3 bg-surface-container-lowest focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/20 outline-none transition-all"
-                placeholder="you@company.com"
-              />
-            </div>
-            <div>
-              <label className="block font-[var(--font-mono)] text-xs uppercase text-on-surface-variant mb-2">Company <span className="normal-case text-outline">(optional)</span></label>
-              <input
-                type="text"
-                className="w-full border-[1.5pt] border-primary/20 rounded-xl px-4 py-3 bg-surface-container-lowest focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/20 outline-none transition-all"
+                className="w-full border-[1.5pt] border-primary/15 rounded-xl px-4 py-3.5 bg-surface-container-lowest text-primary placeholder:text-outline focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/15 outline-none transition-all"
                 placeholder="Company name"
               />
             </div>
-            <div>
-              <label className="block font-[var(--font-mono)] text-xs uppercase text-on-surface-variant mb-2">What do you need? *</label>
-              <select
-                required
-                className="w-full border-[1.5pt] border-primary/20 rounded-xl px-4 py-3 bg-surface-container-lowest focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/20 outline-none transition-all appearance-none"
-              >
-                <option value="">Select an option...</option>
-                <option>Website</option>
-                <option>Mobile App</option>
-                <option>CRM Integration</option>
-                <option>Automation</option>
-                <option>Everything</option>
-                <option>Not sure yet</option>
-              </select>
+
+            {/* Service selector chips */}
+            <div className="mb-5">
+              <label className="block font-[var(--font-mono)] text-[11px] uppercase text-on-surface-variant mb-3 tracking-wider">
+                What do you need? <span className="text-burnt-orange">*</span>
+                <span className="text-outline font-normal normal-case ml-1">(select all that apply)</span>
+              </label>
+              <div className="flex flex-wrap gap-2.5">
+                {serviceOptions.map((opt) => {
+                  const active = selectedServices.includes(opt.value);
+                  return (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      onClick={() => toggleService(opt.value)}
+                      className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium border-[1.5pt] transition-all duration-200 squishy-interaction ${
+                        active
+                          ? "bg-burnt-orange text-white border-burnt-orange shadow-md scale-[1.02]"
+                          : "bg-surface-container-lowest text-on-surface-variant border-primary/15 hover:border-burnt-orange/40 hover:bg-surface-container"
+                      }`}
+                    >
+                      <span>{opt.icon}</span>
+                      <span>{opt.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-            <div>
-              <label className="block font-[var(--font-mono)] text-xs uppercase text-on-surface-variant mb-2">Message</label>
+
+            {/* Budget */}
+            <div className="mb-5">
+              <label className="block font-[var(--font-mono)] text-[11px] uppercase text-on-surface-variant mb-2 tracking-wider">
+                Budget range
+              </label>
+              <div className="relative">
+                <select className="w-full border-[1.5pt] border-primary/15 rounded-xl px-4 py-3.5 bg-surface-container-lowest text-primary focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/15 outline-none transition-all appearance-none pr-10">
+                  <option value="">Select a range...</option>
+                  {budgetOptions.map((b) => (
+                    <option key={b} value={b}>{b}</option>
+                  ))}
+                </select>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-sm">
+                  ▾
+                </div>
+              </div>
+            </div>
+
+            {/* Message */}
+            <div className="mb-8">
+              <label className="block font-[var(--font-mono)] text-[11px] uppercase text-on-surface-variant mb-2 tracking-wider">
+                Tell us more
+              </label>
               <textarea
                 rows={4}
-                className="w-full border-[1.5pt] border-primary/20 rounded-xl px-4 py-3 bg-surface-container-lowest focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/20 outline-none transition-all resize-none"
-                placeholder="Tell us about your project..."
+                className="w-full border-[1.5pt] border-primary/15 rounded-xl px-4 py-3.5 bg-surface-container-lowest text-primary placeholder:text-outline focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/15 outline-none transition-all resize-none"
+                placeholder="Describe your project, timeline, goals..."
               />
             </div>
+
+            {/* Submit */}
             <button
               type="submit"
-              className="w-full bg-burnt-orange text-white py-4 rounded-full font-bold text-lg hover:scale-[1.02] transition-all btn-glow squishy-interaction"
+              className="w-full bg-burnt-orange text-white py-4 rounded-full font-bold text-lg hover:scale-[1.02] transition-all btn-glow squishy-interaction flex items-center justify-center gap-2"
             >
-              Send &rarr;
+              Send Message
+              <span className="text-xl">&rarr;</span>
             </button>
-            <p className="text-center text-on-surface-variant text-xs">We reply within 24 hours.</p>
+            <p className="text-center text-on-surface-variant text-xs mt-4">
+              No spam, no obligation. We reply within 24 hours.
+            </p>
           </form>
+        </AnimateOnScroll>
+
+        {/* Sidebar */}
+        <AnimateOnScroll animation="fade-in-right" delay={200} className="lg:col-span-1 space-y-6">
+          {/* Contact cards */}
+          <div className="bg-white tough-border p-6 rounded-2xl soft-shadow space-y-5">
+            <h3 className="font-[var(--font-headline)] text-lg font-bold text-primary">Prefer to talk?</h3>
+            <a
+              href="mailto:hello@bigkokos.dev"
+              className="flex items-center gap-4 p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors group"
+            >
+              <div className="w-11 h-11 bg-burnt-orange/10 rounded-lg flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                📧
+              </div>
+              <div>
+                <p className="text-xs text-on-surface-variant">Email us</p>
+                <p className="text-primary font-bold text-sm">hello@bigkokos.dev</p>
+              </div>
+            </a>
+            <a
+              href="#"
+              className="flex items-center gap-4 p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors group"
+            >
+              <div className="w-11 h-11 bg-secondary/10 rounded-lg flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                📞
+              </div>
+              <div>
+                <p className="text-xs text-on-surface-variant">Quick call</p>
+                <p className="text-primary font-bold text-sm">Book a 15-min Coconut Chat</p>
+              </div>
+            </a>
+          </div>
+
+          {/* Response time */}
+          <div className="bg-secondary-container/30 border-[1.5pt] border-secondary/20 p-6 rounded-2xl">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-3 h-3 rounded-full bg-secondary animate-pulse"></div>
+              <span className="font-[var(--font-mono)] text-xs text-secondary font-bold uppercase">Avg. response</span>
+            </div>
+            <p className="font-[var(--font-headline)] text-2xl font-extrabold text-primary">Under 4 hours</p>
+            <p className="text-on-surface-variant text-sm mt-1">during business days</p>
+          </div>
+
+          {/* Existing client */}
+          <div className="bg-surface-container p-6 rounded-2xl">
+            <p className="font-[var(--font-mono)] text-[11px] text-on-surface-variant uppercase mb-2 tracking-wider">Existing client?</p>
+            <p className="text-on-surface-variant text-sm">
+              Reach us on your dedicated Slack or Discord channel for priority support.
+            </p>
+          </div>
         </AnimateOnScroll>
       </div>
     </div>
