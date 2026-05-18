@@ -40,7 +40,7 @@ export default function HomePage() {
           </div>
           <AnimateOnScroll animation="fade-in-right" delay={200} className="relative flex justify-center items-center">
             <div className="absolute inset-0 bg-secondary-container/20 blur-3xl rounded-full -z-10"></div>
-            <img alt="Big Kokos" className="w-full max-w-[350px] lg:max-w-[450px] drop-shadow-2xl animate-float" src="/kokos-logo.png" />
+            <img alt="Big Kokos" className="w-full max-w-[350px] lg:max-w-[450px] drop-shadow-2xl animate-float" src="/kokos-hero.png" />
           </AnimateOnScroll>
         </div>
       </section>
