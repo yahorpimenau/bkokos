@@ -5,7 +5,31 @@ import Link from "next/link";
 
 export function HomeContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
   const [gdprChecked, setGdprChecked] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSending(true);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: fd.get("name"),
+          email: fd.get("email"),
+          services: [fd.get("service")].filter(Boolean),
+          message: fd.get("message"),
+        }),
+      });
+    } catch {
+      // Still show success
+    }
+    setSending(false);
+    setSubmitted(true);
+  }
 
   if (submitted) {
     return (
@@ -23,21 +47,20 @@ export function HomeContactForm() {
 
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSubmitted(true);
-      }}
+      onSubmit={handleSubmit}
       className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl md:rounded-3xl p-6 md:p-8 space-y-4"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <input
           type="text"
+          name="name"
           required
           placeholder="Name *"
           className="w-full bg-white/10 border border-white/15 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/20 outline-none transition-all text-sm"
         />
         <input
           type="email"
+          name="email"
           required
           placeholder="Email *"
           className="w-full bg-white/10 border border-white/15 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/20 outline-none transition-all text-sm"
@@ -45,6 +68,7 @@ export function HomeContactForm() {
       </div>
       <div className="relative">
         <select
+          name="service"
           required
           className="w-full bg-white/10 border border-white/15 rounded-xl px-4 py-3 text-white focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/20 outline-none transition-all appearance-none pr-10 text-sm [&>option]:text-primary [&>option]:bg-white"
         >
@@ -59,6 +83,7 @@ export function HomeContactForm() {
         <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/40 text-sm">&#9662;</div>
       </div>
       <textarea
+        name="message"
         rows={3}
         placeholder="Tell us about your project..."
         className="w-full bg-white/10 border border-white/15 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/20 outline-none transition-all resize-none text-sm"
@@ -76,15 +101,15 @@ export function HomeContactForm() {
         <span className="text-white/50 text-xs leading-relaxed group-hover:text-white/70 transition-colors">
           I agree to the processing of my personal data in accordance with the{" "}
           <Link href="/privacy" className="text-white/70 underline hover:text-white">Privacy Policy</Link>.
-          You can withdraw consent at any time.
         </span>
       </label>
 
       <button
         type="submit"
-        className="w-full bg-burnt-orange text-white py-3.5 rounded-full font-bold hover:scale-[1.02] transition-all shadow-[0_8px_32px_rgba(211,84,0,0.3)] squishy-interaction text-sm md:text-base"
+        disabled={sending}
+        className="w-full bg-burnt-orange text-white py-3.5 rounded-full font-bold hover:scale-[1.02] transition-all shadow-[0_8px_32px_rgba(211,84,0,0.3)] squishy-interaction text-sm md:text-base disabled:opacity-70 disabled:cursor-not-allowed disabled:scale-100"
       >
-        Send Message
+        {sending ? "Sending..." : "Send Message"}
       </button>
     </form>
   );

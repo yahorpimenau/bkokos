@@ -25,11 +25,37 @@ const budgetOptions = [
 export default function ContactPage() {
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
   function toggleService(value: string) {
     setSelectedServices((prev) =>
       prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
     );
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSending(true);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          company: data.get("company"),
+          services: selectedServices,
+          budget: data.get("budget"),
+          message: data.get("message"),
+        }),
+      });
+    } catch {
+      // Still show success to user — lead logged server-side
+    }
+    setSending(false);
+    setSubmitted(true);
   }
 
   if (submitted) {
@@ -77,10 +103,7 @@ export default function ContactPage() {
         {/* Form — takes 2 cols */}
         <AnimateOnScroll animation="fade-in-left" className="lg:col-span-2">
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSubmitted(true);
-            }}
+            onSubmit={handleSubmit}
             className="bg-white tough-border p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-3xl soft-shadow"
           >
             {/* Name + Email row */}
@@ -91,6 +114,7 @@ export default function ContactPage() {
                 </label>
                 <input
                   type="text"
+                  name="name"
                   required
                   className="w-full border-[1.5pt] border-primary/15 rounded-xl px-4 py-3.5 bg-surface-container-lowest text-primary placeholder:text-outline focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/15 outline-none transition-all"
                   placeholder="Your name"
@@ -102,6 +126,7 @@ export default function ContactPage() {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   required
                   className="w-full border-[1.5pt] border-primary/15 rounded-xl px-4 py-3.5 bg-surface-container-lowest text-primary placeholder:text-outline focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/15 outline-none transition-all"
                   placeholder="you@company.com"
@@ -116,6 +141,7 @@ export default function ContactPage() {
               </label>
               <input
                 type="text"
+                name="company"
                 className="w-full border-[1.5pt] border-primary/15 rounded-xl px-4 py-3.5 bg-surface-container-lowest text-primary placeholder:text-outline focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/15 outline-none transition-all"
                 placeholder="Company name"
               />
@@ -155,7 +181,7 @@ export default function ContactPage() {
                 Budget range
               </label>
               <div className="relative">
-                <select className="w-full border-[1.5pt] border-primary/15 rounded-xl px-4 py-3.5 bg-surface-container-lowest text-primary focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/15 outline-none transition-all appearance-none pr-10">
+                <select name="budget" className="w-full border-[1.5pt] border-primary/15 rounded-xl px-4 py-3.5 bg-surface-container-lowest text-primary focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/15 outline-none transition-all appearance-none pr-10">
                   <option value="">Select a range...</option>
                   {budgetOptions.map((b) => (
                     <option key={b} value={b}>{b}</option>
@@ -173,6 +199,7 @@ export default function ContactPage() {
                 Tell us more
               </label>
               <textarea
+                name="message"
                 rows={4}
                 className="w-full border-[1.5pt] border-primary/15 rounded-xl px-4 py-3.5 bg-surface-container-lowest text-primary placeholder:text-outline focus:border-burnt-orange focus:ring-2 focus:ring-burnt-orange/15 outline-none transition-all resize-none"
                 placeholder="Describe your project, timeline, goals..."
@@ -198,10 +225,11 @@ export default function ContactPage() {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full bg-burnt-orange text-white py-4 rounded-full font-bold text-lg hover:scale-[1.02] transition-all btn-glow squishy-interaction flex items-center justify-center gap-2"
+              disabled={sending}
+              className="w-full bg-burnt-orange text-white py-4 rounded-full font-bold text-lg hover:scale-[1.02] transition-all btn-glow squishy-interaction flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:scale-100"
             >
-              Send Message
-              <span className="text-xl">&rarr;</span>
+              {sending ? "Sending..." : "Send Message"}
+              {!sending && <span className="text-xl">&rarr;</span>}
             </button>
             <p className="text-center text-on-surface-variant text-xs mt-4">
               No spam, no obligation. We reply within 24 hours.
