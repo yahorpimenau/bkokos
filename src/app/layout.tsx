@@ -24,9 +24,42 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Big Kokos | Full-Service Development",
+  title: {
+    default: "Big Kokos | Full-Service Development",
+    template: "%s | Big Kokos",
+  },
   description:
     "Websites, apps, CRM integrations, and automation — all from one team. Turnkey development for startups and businesses.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
+  openGraph: {
+    title: "Big Kokos | Full-Service Development",
+    description:
+      "Websites, apps, CRM integrations, and automation — all from one team.",
+    url: "https://bkokos.vercel.app",
+    siteName: "Big Kokos",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Big Kokos | Full-Service Development",
+    description:
+      "Websites, apps, CRM integrations, and automation — all from one team.",
+    images: ["/og-image.png"],
+  },
+  metadataBase: new URL("https://bkokos.vercel.app"),
+  other: {
+    "msapplication-TileColor": "#311908",
+    "theme-color": "#311908",
+  },
 };
 
 export default function RootLayout({
