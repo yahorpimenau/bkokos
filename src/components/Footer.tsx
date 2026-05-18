@@ -21,7 +21,7 @@ export function Footer() {
           <span className="font-bold text-primary text-xs uppercase tracking-wider mb-1 md:mb-2">Company</span>
           <Link href="/about" className="text-on-surface-variant hover:text-secondary transition-colors text-sm">About</Link>
           <Link href="/contact" className="text-on-surface-variant hover:text-secondary transition-colors text-sm">Contact</Link>
-          <a href="#" className="text-on-surface-variant hover:text-secondary transition-colors text-sm">Privacy Policy</a>
+          <Link href="/privacy" className="text-on-surface-variant hover:text-secondary transition-colors text-sm">Privacy Policy</Link>
         </div>
         <div className="flex flex-col gap-3">
           <span className="font-bold text-primary text-xs uppercase tracking-wider mb-1 md:mb-2">Get in Touch</span>

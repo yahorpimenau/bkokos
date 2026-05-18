@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
-import { IconShield, IconDroplet, IconBuild, IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconWrench, IconChat, IconHammer, IconRocket as IconLaunch } from "@/components/Icons";
+import { IconShield, IconDroplet, IconBuild, IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconWrench, IconChat, IconHammer } from "@/components/Icons";
 import { IntegrationsMarquee } from "@/components/IntegrationsMarquee";
+import { HomeContactForm } from "@/components/HomeContactForm";
 
 export default function HomePage() {
   return (
@@ -194,21 +195,43 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-16 md:py-24 bg-primary px-6 text-center">
-        <AnimateOnScroll>
-          <div className="max-w-2xl mx-auto">
-            <h3 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold text-white mb-4">
-              Ready to build something great?
-            </h3>
-            <p className="text-primary-fixed-dim mb-8 md:mb-10">
-              Let&apos;s bring your project to life. Free quote, no pressure.
-            </p>
-            <Link href="/contact" className="inline-block bg-burnt-orange text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all btn-glow">
-              Start a Conversation
-            </Link>
+      {/* Contact Form */}
+      <section id="contact" className="py-16 md:py-24 bg-primary px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <AnimateOnScroll animation="fade-in-left">
+              <div>
+                <h3 className="font-[var(--font-headline)] text-2xl md:text-3xl font-bold text-white mb-4">
+                  Ready to build something great?
+                </h3>
+                <p className="text-primary-fixed-dim mb-8 text-base md:text-lg leading-relaxed">
+                  Tell us about your project. We&apos;ll get back within 24 hours with a clear plan and a fixed quote.
+                </p>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center gap-3 text-white/70">
+                    <IconShield className="w-5 h-5 text-secondary shrink-0" />
+                    <span className="text-sm">Your data is protected. We never share it.</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white/70">
+                    <IconChat className="w-5 h-5 text-secondary shrink-0" />
+                    <span className="text-sm">Avg. response time: under 4 hours on business days.</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white/70">
+                    <IconRocket className="w-5 h-5 text-secondary shrink-0" />
+                    <span className="text-sm">Free consultation — no commitment required.</span>
+                  </div>
+                </div>
+                <p className="text-white/40 text-xs">
+                  Or email us directly at{" "}
+                  <a href="mailto:hello@bigkokos.dev" className="text-primary-fixed-dim underline hover:no-underline">hello@bigkokos.dev</a>
+                </p>
+              </div>
+            </AnimateOnScroll>
+            <AnimateOnScroll animation="fade-in-right" delay={150}>
+              <HomeContactForm />
+            </AnimateOnScroll>
           </div>
-        </AnimateOnScroll>
+        </div>
       </section>
     </>
   );

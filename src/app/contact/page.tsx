@@ -179,6 +179,22 @@ export default function ContactPage() {
               />
             </div>
 
+            {/* GDPR consent */}
+            <div className="mb-6">
+              <label className="flex items-start gap-3 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  required
+                  className="mt-0.5 w-4 h-4 rounded border-primary/30 bg-surface-container-lowest text-burnt-orange focus:ring-burnt-orange/30 shrink-0"
+                />
+                <span className="text-on-surface-variant text-xs leading-relaxed group-hover:text-primary transition-colors">
+                  I agree to the processing of my personal data as described in the{" "}
+                  <Link href="/privacy" className="text-burnt-orange underline hover:no-underline">Privacy Policy</Link>.
+                  You can withdraw consent at any time by contacting us.
+                </span>
+              </label>
+            </div>
+
             {/* Submit */}
             <button
               type="submit"

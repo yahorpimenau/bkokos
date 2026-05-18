@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Nunito_Sans, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { CookieConsent } from "@/components/CookieConsent";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-headline",
@@ -23,9 +24,9 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Big Kokos | Smart Automation",
+  title: "Big Kokos | Full-Service Development",
   description:
-    "Tough security, smooth workflows, and fresh ideas for your development cycle.",
+    "Websites, apps, CRM integrations, and automation — all from one team. Turnkey development for startups and businesses.",
 };
 
 export default function RootLayout({
@@ -43,6 +44,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
