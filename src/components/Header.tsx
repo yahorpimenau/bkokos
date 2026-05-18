@@ -4,14 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Logo } from "./Logo";
-import { IconMail } from "./Icons";
+import { IconGlobe, IconGear, IconChart, IconRocket, IconChat, IconMail } from "./Icons";
 
 const navLinks = [
-  { href: "/services", label: "Services", desc: "What we build", emoji: "🌐" },
-  { href: "/process", label: "How We Work", desc: "Our process", emoji: "⚙️" },
-  { href: "/pricing", label: "Pricing", desc: "Transparent plans", emoji: "💰" },
-  { href: "/blog", label: "Blog", desc: "Insights & guides", emoji: "📝" },
-  { href: "/about", label: "About", desc: "Our story", emoji: "👋" },
+  { href: "/services", label: "Services", desc: "What we build", Icon: IconGlobe },
+  { href: "/process", label: "How We Work", desc: "Our process", Icon: IconGear },
+  { href: "/pricing", label: "Pricing", desc: "Transparent plans", Icon: IconChart },
+  { href: "/blog", label: "Blog", desc: "Insights & guides", Icon: IconChat },
+  { href: "/about", label: "About", desc: "Our story", Icon: IconRocket },
 ];
 
 export function Header() {
@@ -105,10 +105,10 @@ export function Header() {
                       : "border-[1.5pt] border-transparent active:bg-surface-container"
                   }`}
                 >
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 text-xl ${
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${
                     isActive ? "bg-burnt-orange/20" : "bg-surface-container-high"
                   }`}>
-                    {link.emoji}
+                    <link.Icon className={`w-5 h-5 ${isActive ? "text-burnt-orange" : "text-primary"}`} />
                   </div>
                   <div>
                     <span className={`font-[var(--font-headline)] font-bold block text-base ${isActive ? "text-burnt-orange" : "text-primary"}`}>
