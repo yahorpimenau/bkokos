@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { StickyCTA } from "@/components/StickyCTA";
 import { BackToTop } from "@/components/BackToTop";
+import { NavigationProgress } from "@/components/NavigationProgress";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-headline",
@@ -75,6 +76,7 @@ export default function RootLayout({
       className={`${plusJakarta.variable} ${nunitoSans.variable} ${spaceMono.variable}`}
     >
       <body className="min-h-screen flex flex-col overflow-x-hidden">
+        <NavigationProgress />
         <div className="grainy-overlay"></div>
         <Header />
         <main className="flex-grow">{children}</main>
