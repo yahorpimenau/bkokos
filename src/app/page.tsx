@@ -7,43 +7,71 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative px-6 pt-12 pb-20 md:pt-28 md:pb-36 max-w-7xl mx-auto overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="z-10">
-            <AnimateOnScroll animation="fade-in-left">
-              <span className="font-[var(--font-mono)] text-xs uppercase tracking-widest text-secondary font-bold mb-4 block">
-                Full-Service Development Partner
-              </span>
-            </AnimateOnScroll>
-            <AnimateOnScroll animation="fade-in-left" delay={100}>
-              <h1 className="font-[var(--font-headline)] text-4xl sm:text-5xl md:text-[48px] font-extrabold text-primary mb-6 leading-tight tracking-tight">
-                Build, launch, and
-                <br />
-                <span className="text-burnt-orange">scale — with one team.</span>
-              </h1>
-            </AnimateOnScroll>
-            <AnimateOnScroll animation="fade-in-left" delay={200}>
-              <p className="text-base sm:text-lg text-on-surface-variant mb-8 md:mb-10 max-w-xl leading-relaxed">
-                Websites, apps, CRM integrations, and automation — all from one team.
-                Turnkey development for startups and growing businesses.
-              </p>
-            </AnimateOnScroll>
-            <AnimateOnScroll animation="fade-in-left" delay={300}>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/contact" className="bg-burnt-orange text-white px-8 sm:px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-200 soft-shadow btn-glow text-center squishy-interaction">
-                  Get a Free Quote
-                </Link>
-                <Link href="/process" className="tough-border border-primary text-primary px-8 sm:px-10 py-4 rounded-full font-bold text-lg hover:bg-primary/5 transition-colors duration-200 text-center">
-                  See How We Work
-                </Link>
+      <section className="relative overflow-hidden">
+        {/* Background video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster="/kokos-hero.png"
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+        </video>
+        {/* Overlay: warm tint + gradient for text readability */}
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-transparent"></div>
+
+        <div className="relative px-6 pt-16 pb-24 md:pt-32 md:pb-40 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="z-10">
+              <AnimateOnScroll animation="fade-in-left">
+                <span className="font-[var(--font-mono)] text-xs uppercase tracking-widest text-secondary font-bold mb-4 block">
+                  Full-Service Development Partner
+                </span>
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="fade-in-left" delay={100}>
+                <h1 className="font-[var(--font-headline)] text-4xl sm:text-5xl md:text-[48px] font-extrabold text-primary mb-6 leading-tight tracking-tight">
+                  Build, launch, and
+                  <br />
+                  <span className="text-burnt-orange">scale — with one team.</span>
+                </h1>
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="fade-in-left" delay={200}>
+                <p className="text-base sm:text-lg text-on-surface-variant mb-8 md:mb-10 max-w-xl leading-relaxed">
+                  Websites, apps, CRM integrations, and automation — all from one team.
+                  Turnkey development for startups and growing businesses.
+                </p>
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="fade-in-left" delay={300}>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link href="/contact" className="bg-burnt-orange text-white px-8 sm:px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-200 soft-shadow btn-glow text-center squishy-interaction">
+                    Get a Free Quote
+                  </Link>
+                  <Link href="/process" className="tough-border border-primary text-primary px-8 sm:px-10 py-4 rounded-full font-bold text-lg hover:bg-primary/5 transition-colors duration-200 text-center">
+                    See How We Work
+                  </Link>
+                </div>
+                <p className="text-on-surface-variant text-sm mt-4 font-[var(--font-mono)]">From MVP to enterprise — we deliver.</p>
+              </AnimateOnScroll>
+            </div>
+            {/* Right side: video visible through rounded window */}
+            <AnimateOnScroll animation="fade-in-right" delay={200} className="relative hidden lg:flex justify-center items-center">
+              <div className="relative w-full max-w-[480px] aspect-square rounded-[3rem] overflow-hidden border-[2pt] border-primary/10 shadow-2xl">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                >
+                  <source src="/hero-bg.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
               </div>
-              <p className="text-on-surface-variant text-sm mt-4 font-[var(--font-mono)]">From MVP to enterprise — we deliver.</p>
             </AnimateOnScroll>
           </div>
-          <AnimateOnScroll animation="fade-in-right" delay={200} className="relative flex justify-center items-center">
-            <div className="absolute inset-0 bg-secondary-container/20 blur-3xl rounded-full -z-10"></div>
-            <img alt="Big Kokos" className="w-full max-w-[350px] lg:max-w-[450px] drop-shadow-2xl animate-float" src="/kokos-hero.png" />
-          </AnimateOnScroll>
         </div>
       </section>
 
