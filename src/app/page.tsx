@@ -14,8 +14,11 @@ export default function HomePage() {
           loop
           muted
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
+          poster="/kokos-hero.png"
         >
+          <source src="/hero-bg.webm" type="video/webm" />
           <source src="/hero-bg.mp4" type="video/mp4" />
         </video>
         {/* Light overlay — enough for readability, video still clearly visible */}
