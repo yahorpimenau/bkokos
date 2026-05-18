@@ -1,18 +1,19 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { IconSprout, IconCoconut, IconHammer, IconCup, IconPalm, IconHandshake, IconScroll, IconCoins } from "@/components/Icons";
 
 const stages = [
-  { icon: "🌱", title: "Seed", desc: "Free discovery call. We listen, ask questions, map your needs." },
-  { icon: "🥥", title: "Green Coconut", desc: "Proposal, timeline, fixed price or retainer. You approve." },
-  { icon: "🔨", title: "Cracking", desc: "Agile development. Weekly demos, Slack channel, full transparency." },
-  { icon: "🧉", title: "Sipping", desc: "Launch + 30-day hyper-care. We fix anything, fast." },
-  { icon: "🌴", title: "Coconut Grove", desc: "Ongoing support, updates, and scaling — monthly or hourly." },
+  { Icon: IconSprout, title: "Seed", desc: "Free discovery call. We listen, ask questions, map your needs." },
+  { Icon: IconCoconut, title: "Green Coconut", desc: "Proposal, timeline, fixed price or retainer. You approve." },
+  { Icon: IconHammer, title: "Cracking", desc: "Agile development. Weekly demos, Slack channel, full transparency." },
+  { Icon: IconCup, title: "Sipping", desc: "Launch + 30-day hyper-care. We fix anything, fast." },
+  { Icon: IconPalm, title: "Coconut Grove", desc: "Ongoing support, updates, and scaling — monthly or hourly." },
 ];
 
 const guarantees = [
-  { icon: "🤝", title: "No lock-in contracts", desc: "Pay as you grow. Leave whenever you want — but you won't want to." },
-  { icon: "📜", title: "IP is yours", desc: "Full code ownership after payment. No strings attached." },
-  { icon: "💰", title: "Deadline guarantee", desc: "Money-back if we miss a deadline. Terms apply — ask us." },
+  { Icon: IconHandshake, title: "No lock-in contracts", desc: "Pay as you grow. Leave whenever you want — but you won't want to." },
+  { Icon: IconScroll, title: "IP is yours", desc: "Full code ownership after payment. No strings attached." },
+  { Icon: IconCoins, title: "Deadline guarantee", desc: "Money-back if we miss a deadline. Terms apply — ask us." },
 ];
 
 export default function ProcessPage() {
@@ -44,7 +45,7 @@ export default function ProcessPage() {
             <AnimateOnScroll key={stage.title} delay={i * 100} animation={i % 2 === 0 ? "fade-in-left" : "fade-in-right"}>
               <div className="flex gap-5 md:gap-8 items-start bg-white tough-border p-6 md:p-8 rounded-2xl soft-shadow group hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
                 <div className="w-16 h-16 md:w-20 md:h-20 bg-surface-container-high rounded-full flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform relative">
-                  <span className="text-3xl md:text-4xl">{stage.icon}</span>
+                  <stage.Icon className="w-8 h-8 md:w-10 md:h-10 text-primary" />
                   <div className="absolute -top-1 -right-1 bg-burnt-orange text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs">
                     {i + 1}
                   </div>
@@ -68,7 +69,9 @@ export default function ProcessPage() {
           {guarantees.map((g, i) => (
             <AnimateOnScroll key={g.title} delay={i * 150}>
               <div className="bg-surface-container p-6 md:p-8 rounded-2xl hover:bg-surface-container-high transition-all duration-300 hover:shadow-lg text-center h-full group">
-                <span className="text-4xl mb-4 block group-hover:scale-110 transition-transform">{g.icon}</span>
+                <div className="w-14 h-14 bg-burnt-orange/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <g.Icon className="w-7 h-7 text-burnt-orange" />
+                </div>
                 <h3 className="font-[var(--font-headline)] text-lg font-bold text-primary mb-2">{g.title}</h3>
                 <p className="text-on-surface-variant text-sm">{g.desc}</p>
               </div>

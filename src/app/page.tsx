@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { IconShield, IconDroplet, IconTree, IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconWrench, IconCoconut, IconHammer, IconCup } from "@/components/Icons";
 
 export default function HomePage() {
   return (
@@ -53,14 +54,14 @@ export default function HomePage() {
         </AnimateOnScroll>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {[
-            { icon: "🥥", title: "Hard-Shell Security", desc: "We build robust, scalable solutions with enterprise-grade protection. Your data and code are locked tight.", link: "/services" },
-            { icon: "💧", title: "Smooth Integration", desc: "CRM, APIs, legacy systems — our coconut water flow connects everything seamlessly. No more silos.", link: "/services" },
-            { icon: "🌴", title: "One Tree, All Fruits", desc: "Websites, mobile apps, automation, cloud — one team, one contract, zero headaches. Truly turnkey.", link: "/services" },
+            { Icon: IconShield, bg: "bg-primary-container", color: "text-on-primary-container", title: "Hard-Shell Security", desc: "We build robust, scalable solutions with enterprise-grade protection. Your data and code are locked tight.", link: "/services" },
+            { Icon: IconDroplet, bg: "bg-secondary-container", color: "text-on-secondary-container", title: "Smooth Integration", desc: "CRM, APIs, legacy systems — our flow connects everything seamlessly. No more silos.", link: "/services" },
+            { Icon: IconTree, bg: "bg-tertiary-container", color: "text-on-tertiary-container", title: "One Tree, All Fruits", desc: "Websites, mobile apps, automation, cloud — one team, one contract, zero headaches. Truly turnkey.", link: "/services" },
           ].map((card, i) => (
             <AnimateOnScroll key={card.title} delay={i * 150}>
               <Link href={card.link} className="block bg-white tough-border p-6 md:p-8 rounded-xl soft-shadow group hover:scale-[1.03] hover:shadow-xl transition-all duration-300 h-full">
-                <div className="w-14 h-14 md:w-16 md:h-16 bg-surface-container-high flex items-center justify-center rounded-2xl mb-5 md:mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-2xl md:text-3xl">{card.icon}</span>
+                <div className={`w-14 h-14 md:w-16 md:h-16 ${card.bg} flex items-center justify-center rounded-2xl mb-5 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <card.Icon className={`w-7 h-7 md:w-8 md:h-8 ${card.color}`} />
                 </div>
                 <h3 className="font-[var(--font-headline)] text-xl md:text-2xl font-semibold text-primary mb-3 md:mb-4">{card.title}</h3>
                 <p className="text-on-surface-variant text-sm md:text-base">{card.desc}</p>
@@ -82,16 +83,18 @@ export default function HomePage() {
           </AnimateOnScroll>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: "🌐", title: "Websites & Web Apps", desc: "From corporate landing pages to full-stack SaaS platforms. Responsive, fast, custom-built." },
-              { icon: "📱", title: "Mobile Apps", desc: "iOS + Android (React Native / Flutter / native). Smooth UX that users love to open every day." },
-              { icon: "🔗", title: "CRM & Integrations", desc: "Connect HubSpot, Salesforce, Pipedrive, or any custom CRM. Automate leads, sync data, save hours." },
-              { icon: "⚙️", title: "Custom Automation", desc: "Workflows, scripts, AI agents — we automate the repetitive so you focus on growth." },
-              { icon: "🚀", title: "MVP in a Week", desc: "Got an idea? We'll build a minimum viable product fast. Test, iterate, scale." },
-              { icon: "🛠️", title: "Maintenance & Support", desc: "24/7 coconut-care plans. We're here when you need us." },
+              { Icon: IconGlobe, title: "Websites & Web Apps", desc: "From corporate landing pages to full-stack SaaS platforms. Responsive, fast, custom-built." },
+              { Icon: IconPhone, title: "Mobile Apps", desc: "iOS + Android (React Native / Flutter / native). Smooth UX that users love to open every day." },
+              { Icon: IconLink, title: "CRM & Integrations", desc: "Connect HubSpot, Salesforce, Pipedrive, or any custom CRM. Automate leads, sync data, save hours." },
+              { Icon: IconGear, title: "Custom Automation", desc: "Workflows, scripts, AI agents — we automate the repetitive so you focus on growth." },
+              { Icon: IconRocket, title: "MVP in a Week", desc: "Got an idea? We'll build a minimum viable product fast. Test, iterate, scale." },
+              { Icon: IconWrench, title: "Maintenance & Support", desc: "24/7 coconut-care plans. We're here when you need us." },
             ].map((s, i) => (
               <AnimateOnScroll key={s.title} delay={i * 100}>
                 <div className="bg-white tough-border p-6 rounded-xl soft-shadow hover:scale-[1.02] hover:shadow-lg transition-all duration-300 h-full group">
-                  <span className="text-3xl mb-4 block group-hover:scale-110 transition-transform w-fit">{s.icon}</span>
+                  <div className="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <s.Icon className="w-6 h-6 text-burnt-orange" />
+                  </div>
                   <h3 className="font-[var(--font-headline)] text-lg font-semibold text-primary mb-2">{s.title}</h3>
                   <p className="text-on-surface-variant text-sm">{s.desc}</p>
                 </div>
@@ -114,13 +117,13 @@ export default function HomePage() {
         </AnimateOnScroll>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {[
-            { icon: "🥥", num: "01", title: "Pick the Coconut", desc: "Tell us your needs. Discovery call + free consultation." },
-            { icon: "🔨", num: "02", title: "Crack It Open", desc: "We design, build, and integrate — transparent sprints, weekly updates." },
-            { icon: "🧉", num: "03", title: "Enjoy the Refreshment", desc: "Launch, train your team, and keep growing. We stay for support." },
+            { Icon: IconCoconut, num: "01", title: "Pick the Coconut", desc: "Tell us your needs. Discovery call + free consultation." },
+            { Icon: IconHammer, num: "02", title: "Crack It Open", desc: "We design, build, and integrate — transparent sprints, weekly updates." },
+            { Icon: IconCup, num: "03", title: "Enjoy the Refreshment", desc: "Launch, train your team, and keep growing. We stay for support." },
           ].map((step, i) => (
             <AnimateOnScroll key={step.num} delay={i * 150} className="text-center">
               <div className="w-20 h-20 md:w-24 md:h-24 bg-white tough-border mx-auto rounded-full flex items-center justify-center mb-4 md:mb-6 soft-shadow relative group hover:scale-110 transition-transform duration-300">
-                <span className="text-3xl md:text-4xl">{step.icon}</span>
+                <step.Icon className="w-9 h-9 md:w-11 md:h-11 text-primary" />
                 <div className="absolute -top-2 -right-2 bg-burnt-orange text-white w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold text-xs md:text-sm">
                   {step.num}
                 </div>

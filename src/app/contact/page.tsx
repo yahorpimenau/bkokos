@@ -3,14 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { IconGlobe, IconPhone, IconLink, IconGear, IconRocket, IconPalm, IconCoconut, IconMail, IconCall } from "@/components/Icons";
 
 const serviceOptions = [
-  { value: "website", label: "Website / Web App", icon: "🌐" },
-  { value: "mobile", label: "Mobile App", icon: "📱" },
-  { value: "crm", label: "CRM Integration", icon: "🔗" },
-  { value: "automation", label: "Automation", icon: "⚙️" },
-  { value: "mvp", label: "MVP / Startup", icon: "🚀" },
-  { value: "everything", label: "Full Package", icon: "🌴" },
+  { value: "website", label: "Website / Web App", Icon: IconGlobe },
+  { value: "mobile", label: "Mobile App", Icon: IconPhone },
+  { value: "crm", label: "CRM Integration", Icon: IconLink },
+  { value: "automation", label: "Automation", Icon: IconGear },
+  { value: "mvp", label: "MVP / Startup", Icon: IconRocket },
+  { value: "everything", label: "Full Package", Icon: IconPalm },
 ];
 
 const budgetOptions = [
@@ -36,7 +37,9 @@ export default function ContactPage() {
       <div className="max-w-2xl mx-auto px-6 py-24 md:py-40 text-center">
         <AnimateOnScroll animation="scale-in">
           <div className="bg-white tough-border p-10 md:p-16 rounded-3xl soft-shadow">
-            <div className="text-6xl mb-6">🥥</div>
+            <div className="w-20 h-20 bg-secondary-container rounded-full flex items-center justify-center mx-auto mb-6">
+              <IconCoconut className="w-10 h-10 text-secondary" />
+            </div>
             <h1 className="font-[var(--font-headline)] text-3xl md:text-4xl font-extrabold text-primary mb-4">
               Coconut received!
             </h1>
@@ -138,7 +141,7 @@ export default function ContactPage() {
                           : "bg-surface-container-lowest text-on-surface-variant border-primary/15 hover:border-burnt-orange/40 hover:bg-surface-container"
                       }`}
                     >
-                      <span>{opt.icon}</span>
+                      <opt.Icon className={`w-4 h-4 ${active ? "text-white" : "text-burnt-orange"}`} />
                       <span>{opt.label}</span>
                     </button>
                   );
@@ -199,8 +202,8 @@ export default function ContactPage() {
               href="mailto:hello@bigkokos.dev"
               className="flex items-center gap-4 p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors group"
             >
-              <div className="w-11 h-11 bg-burnt-orange/10 rounded-lg flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                📧
+              <div className="w-11 h-11 bg-burnt-orange/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                <IconMail className="w-5 h-5 text-burnt-orange" />
               </div>
               <div>
                 <p className="text-xs text-on-surface-variant">Email us</p>
@@ -211,8 +214,8 @@ export default function ContactPage() {
               href="#"
               className="flex items-center gap-4 p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors group"
             >
-              <div className="w-11 h-11 bg-secondary/10 rounded-lg flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                📞
+              <div className="w-11 h-11 bg-secondary/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                <IconCall className="w-5 h-5 text-secondary" />
               </div>
               <div>
                 <p className="text-xs text-on-surface-variant">Quick call</p>

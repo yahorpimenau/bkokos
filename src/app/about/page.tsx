@@ -1,16 +1,17 @@
 import Link from "next/link";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { IconCoconut, IconLink, IconPalette, IconChat, IconBuild, IconHandshake } from "@/components/Icons";
 
 const team = [
-  { name: "Coco", role: "Lead Developer", desc: "10 years full-stack. Turns complex problems into clean code.", icon: "🥥" },
-  { name: "Kai", role: "Integration Specialist", desc: "CRM & API wizard. If it has an endpoint, Kai can connect it.", icon: "🔗" },
-  { name: "Sol", role: "Product Designer", desc: "Makes complex look simple. Obsessed with user experience.", icon: "🎨" },
+  { name: "Coco", role: "Lead Developer", desc: "10 years full-stack. Turns complex problems into clean code.", Icon: IconCoconut, color: "text-primary" },
+  { name: "Kai", role: "Integration Specialist", desc: "CRM & API wizard. If it has an endpoint, Kai can connect it.", Icon: IconLink, color: "text-secondary" },
+  { name: "Sol", role: "Product Designer", desc: "Makes complex look simple. Obsessed with user experience.", Icon: IconPalette, color: "text-burnt-orange" },
 ];
 
 const values = [
-  { icon: "💬", title: "Transparency over buzzwords", desc: "We say what we mean. No \"synergy\" or \"leverage\" — just clear communication about what we're building and why." },
-  { icon: "🏗️", title: "Code that lasts", desc: "We build for the long run. Clean architecture, documented code, scalable from day one." },
-  { icon: "🤝", title: "Clients become partners", desc: "You're not a ticket in our queue. We invest in understanding your business and growing with you." },
+  { Icon: IconChat, title: "Transparency over buzzwords", desc: "We say what we mean. No \"synergy\" or \"leverage\" — just clear communication about what we're building and why." },
+  { Icon: IconBuild, title: "Code that lasts", desc: "We build for the long run. Clean architecture, documented code, scalable from day one." },
+  { Icon: IconHandshake, title: "Clients become partners", desc: "You're not a ticket in our queue. We invest in understanding your business and growing with you." },
 ];
 
 export default function AboutPage() {
@@ -58,7 +59,7 @@ export default function AboutPage() {
             <AnimateOnScroll key={person.name} delay={i * 150}>
               <div className="bg-white tough-border p-6 md:p-8 rounded-2xl soft-shadow text-center group hover:shadow-xl hover:scale-[1.02] transition-all duration-300 h-full">
                 <div className="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
-                  <span className="text-4xl">{person.icon}</span>
+                  <person.Icon className={`w-10 h-10 ${person.color}`} />
                 </div>
                 <h3 className="font-[var(--font-headline)] text-lg font-bold text-primary">{person.name}</h3>
                 <p className="font-[var(--font-mono)] text-xs text-burnt-orange uppercase mb-3">{person.role}</p>
@@ -78,7 +79,9 @@ export default function AboutPage() {
           {values.map((v, i) => (
             <AnimateOnScroll key={v.title} delay={i * 150} animation={i === 1 ? "scale-in" : i === 0 ? "fade-in-left" : "fade-in-right"}>
               <div className="bg-surface-container p-6 md:p-8 rounded-2xl hover:bg-surface-container-high transition-all duration-300 hover:shadow-lg h-full group">
-                <span className="text-3xl mb-4 block group-hover:scale-110 transition-transform w-fit">{v.icon}</span>
+                <div className="w-12 h-12 bg-burnt-orange/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <v.Icon className="w-6 h-6 text-burnt-orange" />
+                </div>
                 <h3 className="font-[var(--font-headline)] text-lg font-bold text-primary mb-2">{v.title}</h3>
                 <p className="text-on-surface-variant text-sm">{v.desc}</p>
               </div>
